@@ -21,15 +21,15 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Board board;
+        private Puissance4 board;
 
         public MainWindow()
         {
             InitializeComponent();
-            ConnectFour();
+            Demarrage();
         }
 
-        public void ConnectFour()
+        public void Demarrage()
         {
             // Initialisation des données
             var game = new Jeu();
@@ -43,7 +43,7 @@ namespace WpfApp2
             game.Iteration = 0;
 
             // Initialisation du jeu
-            board = new Board(game, new int?[game.Ligne, game.Colonne], 0);
+            board = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0);
         }
 
         private void buttonGrid_Click(object sender, RoutedEventArgs e)

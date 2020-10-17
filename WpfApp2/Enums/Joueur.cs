@@ -6,7 +6,7 @@ namespace WpfApp2
 {
     public enum Joueur
     {
-        human = 0,
-        computer = 1
+        Humain = 0,
+        Machine = 1
     }
 }
