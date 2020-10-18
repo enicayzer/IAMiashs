@@ -35,12 +35,13 @@ namespace WpfApp2
             var game = new Jeu();
             game.Ligne = 6;
             game.Colonne = 7;
-            game.Statut = Statuts.running;
+            game.Statut = Statuts.EnCours;
             game.Profondeur = 2;
             game.Score = 100000;
             game.Round = 0;
             game.Gagnant = null;
             game.Iteration = 0;
+            game.NbrPointsGagnant = 4;
 
             // Initialisation du jeu
             puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0);

@@ -6,9 +6,9 @@ namespace WpfApp2
 {
     public enum Statuts
     {
-        running = 0,
-        won = 1,
-        lost = 2,
-        tie = 3
+        EnCours = 0,
+        Gagne = 1,
+        Perdu = 2,
+        Nul = 3
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Globalization;
 
 namespace WpfApp2
 {
@@ -9,7 +10,7 @@ namespace WpfApp2
     {
         #region Propriétés 
         private Jeu jeu;
-        private int?[,] matrice; // [x,y] : x => colonne et y => ligne
+        private int?[,] matrice; // [x,y] : x => ligne et y => colonne
         public Joueur joueur { get; set; }
         #endregion
 
@@ -47,7 +48,7 @@ namespace WpfApp2
         {
             int? valeurRetourLigne = null;
             // On vérfie que la colonne sélectionné existe
-            if (matrice[0, colonne] == null && colonne < jeu.Colonne && colonne >= 0)
+            if (colonne < jeu.Colonne && matrice[0, colonne] == null  && colonne >= 0)
             {
                 /* Dans le puissance4 le [0,0] est en haut à gauche et le [5,6] en bas à droite
                  * 
@@ -77,26 +78,26 @@ namespace WpfApp2
             var pointsHumain = 0;
             var pointsMachine = 0;
 
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < jeu.NbrPointsGagnant; i++)
             {
-                if (matrice[ligne,colonne] == 0)
+                if (ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne,colonne] == 0)
                 {
-                    pointsHumain++;
+                    pointsHumain = pointsHumain + 1;
                 }
-                else if(matrice[ligne,colonne] == 1)
+                else if(ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne,colonne] == 1)
                 {
-                    pointsMachine++;
+                    pointsMachine = pointsMachine + 1;
                 }
                 ligne += deltaY;
                 colonne += deltaX;
             }
 
             // Dans le cas ou l'humain ou la machine à 4 pions placés => Fin de la partie
-            if (pointsHumain == 4)
+            if (pointsHumain == jeu.NbrPointsGagnant)
             {
                 return -jeu.Score;
             }
-            else if (pointsMachine == 4)
+            else if (pointsMachine == jeu.NbrPointsGagnant)
             {
                 return jeu.Score;
             }
@@ -104,9 +105,53 @@ namespace WpfApp2
             return pointsMachine;
         }
 
+        private long checkScore(long score)
+        {
+            if (score == jeu.Score)
+            {
+                return jeu.Score;
+            }
+            if (score == -jeu.Score)
+            {
+                return -jeu.Score;
+            }
+            return score;
+        }
+
         private long score()
         {
             long points = 0, pointsVertical = 0, pointsHorizontal = 0, pointsDiagonal = 0, pointsDiagonal2 = 0;
+
+            //for (var ligne = 0; ligne < jeu.Ligne; ligne++)
+            //{
+            //    for (var colonne = 0; colonne < jeu.Colonne; colonne++)
+            //    {
+            //        if (ligne < jeu.Ligne - 3)
+            //        {
+            //            pointsVertical += PositionScore(ligne, colonne, 1, 0);
+            //        }
+            //        if (colonne < jeu.Colonne - 3)
+            //        {
+            //            pointsHorizontal += PositionScore(ligne, colonne, 0, 1);
+            //        }
+            //        if (ligne < jeu.Ligne - 3 && colonne < jeu.Colonne - 3)
+            //        {
+            //            pointsDiagonal += PositionScore(ligne, colonne, 1, 1);
+            //        }
+            //        if (ligne > 2 && colonne < jeu.Colonne - 4)
+            //        {
+            //            pointsDiagonal2 += PositionScore(ligne, colonne, -1, +1);
+            //        }
+            //        if (pointsVertical == jeu.Score || pointsHorizontal == jeu.Score || pointsDiagonal == jeu.Score || pointsDiagonal2 == jeu.Score)
+            //        {
+            //            return jeu.Score;
+            //        }
+            //        if (pointsVertical == -jeu.Score || pointsHorizontal == -jeu.Score || pointsDiagonal == -jeu.Score || pointsDiagonal2 == -jeu.Score)
+            //        {
+            //            return -jeu.Score;
+            //        }
+            //    }
+            //}
 
             // Board-size: 7x6 (height x width)
             // Array indices begin with 0
@@ -160,8 +205,9 @@ namespace WpfApp2
                     {
                         return jeu.Score;
                     }
-                    if (score == -jeu.Score) { 
-                        return -jeu.Score; 
+                    if (score == -jeu.Score)
+                    {
+                        return -jeu.Score;
                     }
                     pointsHorizontal += score;
                 }
@@ -282,14 +328,13 @@ namespace WpfApp2
                 return new List<long?>() { null, score };
             }
             var maximum = new List<long?>() { null, -99999 };
-
             for (var colonne = 0; colonne < puissance4.jeu.Colonne; colonne++)
             {
                 // Création d'une copie du jeu (on doit clôner la matrice sinon il y a une référence) 
                 var copyPuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
                 if (copyPuissance4.Placer(colonne).Item1)
                 {
-                    jeu.Iteration++;
+                    jeu.Iteration = jeu.Iteration + 1;
                     var prochainMouvement = Min(copyPuissance4, profondeur - 1);
                     if (maximum[0] == null || prochainMouvement[1] > maximum[1])
                     {
@@ -320,10 +365,9 @@ namespace WpfApp2
             {
                 // Création d'une copie du jeu (on doit clôner la matrice sinon il y a une référence) 
                 var copyPuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
-
                 if (copyPuissance4.Placer(colonne).Item1)
                 {
-                    jeu.Iteration++;
+                    jeu.Iteration = jeu.Iteration + 1;
                     var prochainMouvement = Max(copyPuissance4, profondeur - 1);
                     if (minimum[0] == null || prochainMouvement[1] < minimum[1])
                     {
