@@ -9,7 +9,7 @@ namespace WpfApp2
     {
         #region Propriétés 
         private Jeu jeu;
-        private int?[,] matrice;
+        private int?[,] matrice; // [x,y] : x => colonne et y => ligne
         public Joueur joueur { get; set; }
         #endregion
 
@@ -23,8 +23,12 @@ namespace WpfApp2
         }
         #endregion
 
-
-
+        /// <summary>
+        /// Permet de vérifier si le jeu est terminé 
+        /// </summary>
+        /// <param name="profondeur"></param>
+        /// <param name="score"></param>
+        /// <returns></returns>
         private bool EstTermine(int profondeur, long score)
         {
             if (profondeur == 0 || score == jeu.Score || score == -jeu.Score || EstComplet())
@@ -34,11 +38,21 @@ namespace WpfApp2
             return false;
         }
 
+        /// <summary>
+        /// Permet de placer dans la matrice un nouveau pion  
+        /// </summary>
+        /// <param name="colonne"></param>
+        /// <returns></returns>
         public Tuple<bool, int?> Placer(int colonne)
         {
             int? valeurRetourLigne = null;
-            if (matrice[0, colonne] == null && colonne >= 0 && colonne < jeu.Colonne)
+            // On vérfie que la colonne sélectionné existe
+            if (matrice[0, colonne] == null && colonne < jeu.Colonne && colonne >= 0)
             {
+                /* Dans le puissance4 le [0,0] est en haut à gauche et le [5,6] en bas à droite
+                 * 
+                 * Dans cette boucle on va vérifier pour une colonne une ligne non vide en décrémentant 
+                */
                 for (var ligne = jeu.Ligne - 1; ligne >= 0; ligne--)
                 {
                     if (matrice[ligne, colonne] == null)
@@ -48,7 +62,7 @@ namespace WpfApp2
                         break;
                     }
                 }
-                // Récupération du nouveau joueur
+                // Récupération de l'autre joueur
                 joueur = ChangementJoueur(joueur);
                 return new Tuple<bool, int?>(true, valeurRetourLigne);
             }
@@ -77,6 +91,7 @@ namespace WpfApp2
                 colonne += deltaX;
             }
 
+            // Dans le cas ou l'humain ou la machine à 4 pions placés => Fin de la partie
             if (pointsHumain == 4)
             {
                 return -jeu.Score;

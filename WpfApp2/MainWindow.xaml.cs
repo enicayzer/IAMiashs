@@ -21,7 +21,7 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Puissance4 board;
+        private Puissance4 puissance4;
 
         public MainWindow()
         {
@@ -36,38 +36,46 @@ namespace WpfApp2
             game.Ligne = 6;
             game.Colonne = 7;
             game.Statut = Statuts.running;
-            game.Profondeur = 4;
+            game.Profondeur = 2;
             game.Score = 100000;
             game.Round = 0;
             game.Gagnant = null;
             game.Iteration = 0;
 
             // Initialisation du jeu
-            board = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0);
+            puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0);
         }
 
         private void buttonGrid_Click(object sender, RoutedEventArgs e)
         {
-            var column = Grid.GetColumn((Button)sender);
-            var tuple = board.Placer(column);
-            if (!tuple.Item1)
+            #region Partie Humain
+            // On récupère la colonne sélectionné par l'utilisateur
+            var colonne = Grid.GetColumn((Button)sender);
+            var tupleLigneRetour = puissance4.Placer(colonne);
+            if (!tupleLigneRetour.Item1)
             {
                 throw new Exception();
             }
-            var row = tuple.Item2;
-            var buttons = gridJeu.Children.Cast<Button>().FirstOrDefault(e => Grid.GetRow(e) == tuple.Item2 && Grid.GetColumn(e) == column);
-            var button = gridJeu.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == column) as Button;
-            buttons.Background = Brushes.Blue;
+            var boutonCliquer = gridJeu.Children.Cast<Button>()
+                .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetour.Item2 && Grid.GetColumn(e) == colonne);
+            // On change le bouton en bleu du bouton cliqué par l'utilisateur
+            boutonCliquer.Background = Brushes.Blue;
+            #endregion
 
-            // on appelle l'IA 
-            var retourIA = board.DecisionIA();
-            var place = board.Placer(retourIA);
-            if (!place.Item1)
+            #region Partie de l'IA 
+            // on appelle l'algorithme minimax 
+            var retourIA = puissance4.DecisionIA();
+            // On a la colonne sélectionné pr l'IA
+            var tupleLigneRetourIA = puissance4.Placer(retourIA);
+            if (!tupleLigneRetourIA.Item1)
             {
                 throw new Exception();
             }
-            var buttonIA = gridJeu.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == place.Item2 && Grid.GetColumn(e) == retourIA) as Button;
-            buttonIA.Background = Brushes.Red;
+            var boutonCliquerIA = gridJeu.Children.Cast<UIElement>()
+                .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetourIA.Item2 && Grid.GetColumn(e) == retourIA) as Button;
+            // On change le fond en rouge du bouton sélectionné par l'IA 
+            boutonCliquerIA.Background = Brushes.Red;
+            #endregion
         }
     }
 }
