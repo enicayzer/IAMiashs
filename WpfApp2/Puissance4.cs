@@ -120,12 +120,14 @@ namespace WpfApp2
 
         private int CompteurPoints()
         {
-            int points = 0, pointsVertical = 0, pointsHorizontal = 0, pointsDiagonal = 0, pointsDiagonal2 = 0;
+            int pointsVertical = 0, pointsHorizontal = 0, pointsDiagonal = 0, pointsDiagonal2 = 0;
+            // On vérifie pour chaque ligne et pour chaque colonne
             for (var ligne = 0; ligne < jeu.Ligne; ligne++)
             {
                 for (var colonne = 0; colonne < jeu.Colonne; colonne++)
                 {
-                    #region Calcul des points 
+                    #region Calcul des points
+                    // On compte les points vertical
                     if (ligne < jeu.Ligne - 3)
                     {
                         pointsVertical += PointsParPosition(ligne, colonne, 1, 0);
@@ -135,6 +137,7 @@ namespace WpfApp2
                             return scoreVerifie.Item2;
                         }
                     }
+                    // On compte les points horizontal
                     if (colonne < jeu.Colonne - 3)
                     {
                         pointsHorizontal += PointsParPosition(ligne, colonne, 0, 1);
@@ -144,6 +147,7 @@ namespace WpfApp2
                             return scoreVerifie.Item2;
                         }
                     }
+                    // On compte les points dans la diagonal
                     if (ligne < jeu.Ligne - 3 && colonne < jeu.Colonne - 3)
                     {
                         pointsDiagonal += PointsParPosition(ligne, colonne, 1, 1);
@@ -153,6 +157,7 @@ namespace WpfApp2
                             return scoreVerifie.Item2;
                         }
                     }
+                    // On compte les points dans l'autre diagonal
                     if (ligne > 2 && colonne < jeu.Colonne - 4)
                     {
                         pointsDiagonal2 += PointsParPosition(ligne, colonne, -1, +1);
@@ -165,9 +170,8 @@ namespace WpfApp2
                 }
             }
           
-            // Retour du nombre de points
-            points = pointsHorizontal + pointsVertical + pointsDiagonal + pointsDiagonal2;
-            return points;
+            // Retour du nombre de points total
+            return pointsHorizontal + pointsVertical + pointsDiagonal + pointsDiagonal2;
         }
 
         /// <summary>
