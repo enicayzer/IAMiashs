@@ -39,8 +39,6 @@ namespace WpfApp2
             game.Profondeur = 2;
             game.Score = 100000;
             game.Round = 0;
-            game.Gagnant = null;
-            game.Iteration = 0;
             game.NbrPointsGagnant = 4;
 
             // Initialisation du jeu

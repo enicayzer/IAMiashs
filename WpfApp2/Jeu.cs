@@ -10,10 +10,9 @@ namespace WpfApp2
         public int Colonne { get; set; }
         public Statuts Statut { get; set; }
         public int Profondeur { get; set; }
-        public long Score { get; set; }
+        public int Score { get; set; }
         public int Round { get; set; }
         public object Gagnant { get; set; }
-        public int Iteration { get; set; }
         // Nombre de points gagnant par défaut 4
         public int NbrPointsGagnant { get; set; }
     }

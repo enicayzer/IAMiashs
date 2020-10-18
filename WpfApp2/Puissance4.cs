@@ -30,7 +30,7 @@ namespace WpfApp2
         /// <param name="profondeur"></param>
         /// <param name="score"></param>
         /// <returns></returns>
-        private bool EstTermine(int profondeur, long score)
+        private bool EstTermine(int profondeur, int score)
         {
             if (profondeur == 0 || score == jeu.Score || score == -jeu.Score || EstComplet())
             {
@@ -48,7 +48,7 @@ namespace WpfApp2
         {
             int? valeurRetourLigne = null;
             // On vérfie que la colonne sélectionné existe
-            if (colonne < jeu.Colonne && matrice[0, colonne] == null  && colonne >= 0)
+            if (colonne < jeu.Colonne && matrice[0, colonne] == null && colonne >= 0)
             {
                 /* Dans le puissance4 le [0,0] est en haut à gauche et le [5,6] en bas à droite
                  * 
@@ -73,23 +73,23 @@ namespace WpfApp2
             }
         }
 
-        private long PositionScore(int ligne, int colonne, int deltaY, int deltaX)
+        private int PointsParPosition(int ligne, int colonne, int axeY, int axeX)
         {
             var pointsHumain = 0;
             var pointsMachine = 0;
 
             for (var i = 0; i < jeu.NbrPointsGagnant; i++)
             {
-                if (ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne,colonne] == 0)
+                if (ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne, colonne] == 0)
                 {
                     pointsHumain = pointsHumain + 1;
                 }
-                else if(ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne,colonne] == 1)
+                else if (ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne, colonne] == 1)
                 {
                     pointsMachine = pointsMachine + 1;
                 }
-                ligne += deltaY;
-                colonne += deltaX;
+                ligne += axeY;
+                colonne += axeX;
             }
 
             // Dans le cas ou l'humain ou la machine à 4 pions placés => Fin de la partie
@@ -105,167 +105,66 @@ namespace WpfApp2
             return pointsMachine;
         }
 
-        private long checkScore(long score)
+        private Tuple<bool, int> VerifierScore(int score)
         {
             if (score == jeu.Score)
             {
-                return jeu.Score;
+                return new Tuple<bool, int>(true, jeu.Score);
             }
             if (score == -jeu.Score)
             {
-                return -jeu.Score;
+                return new Tuple<bool, int>(true, -jeu.Score);
             }
-            return score;
+            return new Tuple<bool, int>(false, score);
         }
 
-        private long score()
+        private int CompteurPoints()
         {
-            long points = 0, pointsVertical = 0, pointsHorizontal = 0, pointsDiagonal = 0, pointsDiagonal2 = 0;
-
-            //for (var ligne = 0; ligne < jeu.Ligne; ligne++)
-            //{
-            //    for (var colonne = 0; colonne < jeu.Colonne; colonne++)
-            //    {
-            //        if (ligne < jeu.Ligne - 3)
-            //        {
-            //            pointsVertical += PositionScore(ligne, colonne, 1, 0);
-            //        }
-            //        if (colonne < jeu.Colonne - 3)
-            //        {
-            //            pointsHorizontal += PositionScore(ligne, colonne, 0, 1);
-            //        }
-            //        if (ligne < jeu.Ligne - 3 && colonne < jeu.Colonne - 3)
-            //        {
-            //            pointsDiagonal += PositionScore(ligne, colonne, 1, 1);
-            //        }
-            //        if (ligne > 2 && colonne < jeu.Colonne - 4)
-            //        {
-            //            pointsDiagonal2 += PositionScore(ligne, colonne, -1, +1);
-            //        }
-            //        if (pointsVertical == jeu.Score || pointsHorizontal == jeu.Score || pointsDiagonal == jeu.Score || pointsDiagonal2 == jeu.Score)
-            //        {
-            //            return jeu.Score;
-            //        }
-            //        if (pointsVertical == -jeu.Score || pointsHorizontal == -jeu.Score || pointsDiagonal == -jeu.Score || pointsDiagonal2 == -jeu.Score)
-            //        {
-            //            return -jeu.Score;
-            //        }
-            //    }
-            //}
-
-            // Board-size: 7x6 (height x width)
-            // Array indices begin with 0
-            // => e.g. height: 0, 1, 2, 3, 4, 5
-
-            // Vertical points
-            // Check each column for vertical score
-            // 
-            // Possible situations
-            //  0  1  2  3  4  5  6
-            // [x][ ][ ][ ][ ][ ][ ] 0
-            // [x][x][ ][ ][ ][ ][ ] 1
-            // [x][x][x][ ][ ][ ][ ] 2
-            // [x][x][x][ ][ ][ ][ ] 3
-            // [ ][x][x][ ][ ][ ][ ] 4
-            // [ ][ ][x][ ][ ][ ][ ] 5
-            for (var ligne = 0; ligne < jeu.Ligne - 3; ligne++)
+            int points = 0, pointsVertical = 0, pointsHorizontal = 0, pointsDiagonal = 0, pointsDiagonal2 = 0;
+            for (var ligne = 0; ligne < jeu.Ligne; ligne++)
             {
                 for (var colonne = 0; colonne < jeu.Colonne; colonne++)
                 {
-                    var score = PositionScore(ligne, colonne, 1, 0);
-                    if (score == jeu.Score)
+                    #region Calcul des points 
+                    if (ligne < jeu.Ligne - 3)
                     {
-                        return jeu.Score;
+                        pointsVertical += PointsParPosition(ligne, colonne, 1, 0);
+                        var scoreVerifie = VerifierScore(pointsVertical);
+                        if (scoreVerifie.Item1)
+                        {
+                            return scoreVerifie.Item2;
+                        }
                     }
-                    if (score == -jeu.Score)
+                    if (colonne < jeu.Colonne - 3)
                     {
-                        return -jeu.Score;
+                        pointsHorizontal += PointsParPosition(ligne, colonne, 0, 1);
+                        var scoreVerifie = VerifierScore(pointsHorizontal);
+                        if (scoreVerifie.Item1)
+                        {
+                            return scoreVerifie.Item2;
+                        }
                     }
-                    pointsVertical += score;
+                    if (ligne < jeu.Ligne - 3 && colonne < jeu.Colonne - 3)
+                    {
+                        pointsDiagonal += PointsParPosition(ligne, colonne, 1, 1);
+                        var scoreVerifie = VerifierScore(pointsDiagonal);
+                        if (scoreVerifie.Item1)
+                        {
+                            return scoreVerifie.Item2;
+                        }
+                    }
+                    if (ligne > 2 && colonne < jeu.Colonne - 4)
+                    {
+                        pointsDiagonal2 += PointsParPosition(ligne, colonne, -1, +1);
+                        if (VerifierScore(pointsDiagonal2).Item1)
+                        {
+                            return VerifierScore(pointsDiagonal2).Item2;
+                        }
+                    }
+                    #endregion
                 }
             }
-
-            // Horizontal points
-            // Check each row's score
-            // 
-            // Possible situations
-            //  0  1  2  3  4  5  6
-            // [x][x][x][x][ ][ ][ ] 0
-            // [ ][x][x][x][x][ ][ ] 1
-            // [ ][ ][x][x][x][x][ ] 2
-            // [ ][ ][ ][x][x][x][x] 3
-            // [ ][ ][ ][ ][ ][ ][ ] 4
-            // [ ][ ][ ][ ][ ][ ][ ] 5
-            for (var ligne = 0; ligne < jeu.Ligne; ligne++)
-            {
-                for (var colonne = 0; colonne < jeu.Colonne - 3; colonne++)
-                {
-                    var score = PositionScore(ligne, colonne, 0, 1);
-                    if (score == jeu.Score)
-                    {
-                        return jeu.Score;
-                    }
-                    if (score == -jeu.Score)
-                    {
-                        return -jeu.Score;
-                    }
-                    pointsHorizontal += score;
-                }
-            }
-
-            // Diagonal points 1 (left-bottom)
-            //
-            // Possible situation
-            //  0  1  2  3  4  5  6
-            // [x][ ][ ][ ][ ][ ][ ] 0
-            // [ ][x][ ][ ][ ][ ][ ] 1
-            // [ ][ ][x][ ][ ][ ][ ] 2
-            // [ ][ ][ ][x][ ][ ][ ] 3
-            // [ ][ ][ ][ ][ ][ ][ ] 4
-            // [ ][ ][ ][ ][ ][ ][ ] 5
-            for (var ligne = 0; ligne < jeu.Ligne - 3; ligne++)
-            {
-                for (var colonne = 0; colonne < jeu.Colonne - 3; colonne++)
-                {
-                    var score = PositionScore(ligne, colonne, 1, 1);
-                    if (score == jeu.Score)
-                    {
-                        return jeu.Score;
-                    }
-                    if (score == -jeu.Score)
-                    {
-                        return -jeu.Score;
-                    }
-                    pointsDiagonal += score;
-                }
-            }
-
-            // Diagonal points 2 (right-bottom)
-            //
-            // Possible situation
-            //  0  1  2  3  4  5  6
-            // [ ][ ][ ][x][ ][ ][ ] 0
-            // [ ][ ][x][ ][ ][ ][ ] 1
-            // [ ][x][ ][ ][ ][ ][ ] 2
-            // [x][ ][ ][ ][ ][ ][ ] 3
-            // [ ][ ][ ][ ][ ][ ][ ] 4
-            // [ ][ ][ ][ ][ ][ ][ ] 5
-            for (var ligne = 3; ligne < jeu.Ligne; ligne++)
-            {
-                for (var colonne = 0; colonne <= jeu.Colonne - 4; colonne++)
-                {
-                    var score = PositionScore(ligne, colonne, -1, +1);
-                    if (score == jeu.Score)
-                    {
-                        return jeu.Score;
-                    }
-                    if (score == -jeu.Score)
-                    {
-                        return -jeu.Score;
-                    }
-                    pointsDiagonal2 += score;
-                }
-            }
+          
             // Retour du nombre de points
             points = pointsHorizontal + pointsVertical + pointsDiagonal + pointsDiagonal2;
             return points;
@@ -319,64 +218,64 @@ namespace WpfApp2
         /// <param name="puissance4"></param>
         /// <param name="profondeur"></param>
         /// <returns></returns>
-        private List<long?> Max(Puissance4 puissance4, int profondeur)
+        private List<int?> Max(Puissance4 puissance4, int profondeur)
         {
-            var score = puissance4.score();
+            var points = puissance4.CompteurPoints();
             // Si le jeu est terminée on retour une liste null
-            if (puissance4.EstTermine(profondeur, score))
+            if (puissance4.EstTermine(profondeur, points))
             {
-                return new List<long?>() { null, score };
+                return new List<int?>() { null, points };
             }
-            var maximum = new List<long?>() { null, -99999 };
+            var maximumPoints = new List<int?>() { null, -99999 };
             for (var colonne = 0; colonne < puissance4.jeu.Colonne; colonne++)
             {
                 // Création d'une copie du jeu (on doit clôner la matrice sinon il y a une référence) 
-                var copyPuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
-                if (copyPuissance4.Placer(colonne).Item1)
+                var copiePuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
+                // On essaye de positionner le pion dans une colonne de la copie du puissance4
+                if (copiePuissance4.Placer(colonne).Item1)
                 {
-                    jeu.Iteration = jeu.Iteration + 1;
-                    var prochainMouvement = Min(copyPuissance4, profondeur - 1);
-                    if (maximum[0] == null || prochainMouvement[1] > maximum[1])
+                    var prochainCoup = Min(copiePuissance4, profondeur - 1);
+                    if (maximumPoints[0] == null || prochainCoup[1] > maximumPoints[1])
                     {
-                        maximum[0] = colonne;
-                        maximum[1] = prochainMouvement[1];
+                        maximumPoints[0] = colonne;
+                        maximumPoints[1] = prochainCoup[1];
                     }
                 }
             }
-            return maximum;
+            return maximumPoints;
         }
 
-       /// <summary>
-       /// Méthode qui implémente le min (minimax)
-       /// </summary>
-       /// <param name="puissance4"></param>
-       /// <param name="profondeur"></param>
-       /// <returns></returns>
-        private List<long?> Min(Puissance4 puissance4, int profondeur)
+        /// <summary>
+        /// Méthode qui implémente le min (minimax)
+        /// </summary>
+        /// <param name="puissance4"></param>
+        /// <param name="profondeur"></param>
+        /// <returns></returns>
+        private List<int?> Min(Puissance4 puissance4, int profondeur)
         {
-            var score = puissance4.score();
+            var points = puissance4.CompteurPoints();
             // Si le jeu est terminée on retour une liste null
-            if (puissance4.EstTermine(profondeur, score))
+            if (puissance4.EstTermine(profondeur, points))
             {
-                return new List<long?>() { null, score };
+                return new List<int?>() { null, points };
             }
-            var minimum = new List<long?>() { null, 99999 };
+            var minimumPoints = new List<int?>() { null, 99999 };
             for (var colonne = 0; colonne < puissance4.jeu.Colonne; colonne++)
             {
                 // Création d'une copie du jeu (on doit clôner la matrice sinon il y a une référence) 
-                var copyPuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
-                if (copyPuissance4.Placer(colonne).Item1)
+                var copiePuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
+                // On essaye de positionner le pion dans une colonne de la copie du puissance4
+                if (copiePuissance4.Placer(colonne).Item1)
                 {
-                    jeu.Iteration = jeu.Iteration + 1;
-                    var prochainMouvement = Max(copyPuissance4, profondeur - 1);
-                    if (minimum[0] == null || prochainMouvement[1] < minimum[1])
+                    var prochainCoup = Max(copiePuissance4, profondeur - 1);
+                    if (minimumPoints[0] == null || prochainCoup[1] < minimumPoints[1])
                     {
-                        minimum[0] = colonne;
-                        minimum[1] = prochainMouvement[1];
+                        minimumPoints[0] = colonne;
+                        minimumPoints[1] = prochainCoup[1];
                     }
                 }
             }
-            return minimum;
+            return minimumPoints;
         }
     }
 }
