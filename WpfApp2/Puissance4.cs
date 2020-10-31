@@ -14,7 +14,6 @@ namespace WpfApp2
         public Joueur joueur { get; set; }
         #endregion
 
-
         #region Constructeur
         public Puissance4(Jeu jeu, int?[,] matrice, Joueur joueur)
         {
@@ -158,7 +157,7 @@ namespace WpfApp2
                         }
                     }
                     // On compte les points dans l'autre diagonal
-                    if (ligne > 2 && colonne < jeu.Colonne - 4)
+                    if (ligne > 2 && colonne <= jeu.Colonne - 4)
                     {
                         pointsDiagonal2 += PointsParPosition(ligne, colonne, -1, +1);
                         if (VerifierScore(pointsDiagonal2).Item1)
