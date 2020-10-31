@@ -28,48 +28,300 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button x:Name="button0_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button0_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button0_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button0_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button0_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button0_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button0_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="0" Content=""></Button>
-        <Button x:Name="button1_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button1_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button1_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button1_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button1_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button1_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button1_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="1" Content=""></Button>
-        <Button x:Name="button2_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button2_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button2_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button2_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button2_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button2_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button2_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="2" Content=""></Button>
-        <Button x:Name="button3_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button3_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button3_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button3_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button3_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button3_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button3_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="3" Content=""></Button>
-        <Button x:Name="button4_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button4_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button4_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button4_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button4_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button4_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button4_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="4" Content=""></Button>
-        <Button x:Name="button5_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="5" Content=""></Button>
-        <Button x:Name="button5_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="5" Content=""></Button>
-        <Button x:Name="button5_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="5" Content=""></Button>
-        <Button x:Name="button5_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="5" Content=""></Button>
-        <Button x:Name="button5_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="5" Content=""></Button>
-        <Button x:Name="button5_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="5" Content=""></Button>
-        <Button x:Name="button5_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="5" Content=""></Button>
+        <Button x:Name="button0_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button0_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button0_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button0_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button0_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button0_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button0_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="0" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button1_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="1" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button2_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="2" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button3_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="3" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button4_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="4" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_0" Click="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_1" Click="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_2" Click="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_3" Click="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="button5_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="5" Content="">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="60"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <Button Content="Restart" HorizontalAlignment="Left" Margin="-57,-40,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>
