@@ -70,5 +70,6 @@
         <Button x:Name="button5_4" Click="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="5" Content=""></Button>
         <Button x:Name="button5_5" Click="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="5" Content=""></Button>
         <Button x:Name="button5_6" Click="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="5" Content=""></Button>
+        <Button Content="Restart" HorizontalAlignment="Left" Margin="-57,-40,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>

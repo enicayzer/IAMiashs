@@ -38,7 +38,6 @@ namespace WpfApp2
             game.Statut = Statuts.EnCours;
             game.Profondeur = 2;
             game.Score = 100000;
-            game.Round = 0;
             game.NbrPointsGagnant = 4;
 
             // Initialisation du jeu
@@ -47,17 +46,18 @@ namespace WpfApp2
 
         private void buttonGrid_Click(object sender, RoutedEventArgs e)
         {
-            if (VerifierJeu())
+            if (AffichageMessageFin(puissance4.VerifierJeu()))
             {
                 return;
             }
+
             #region Partie Humain
             // On récupère la colonne sélectionné par l'utilisateur
             var colonne = Grid.GetColumn((Button)sender);
             var tupleLigneRetour = puissance4.Placer(colonne);
             if (!tupleLigneRetour.Item1)
             {
-                throw new Exception();
+                return;
             }
             var boutonCliquer = gridJeu.Children.Cast<Button>()
                 .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetour.Item2 && Grid.GetColumn(e) == colonne);
@@ -83,28 +83,44 @@ namespace WpfApp2
             boutonCliquerIA.Background = Brushes.Red;
 
 
-            if (VerifierJeu())
+            if (AffichageMessageFin(puissance4.VerifierJeu()))
             {
                 return;
             }
             #endregion
         }
 
-        private bool VerifierJeu()
+        private bool AffichageMessageFin(Statuts statuts)
         {
-            var continuer = false;
-            // Si gagnant ou perdant alors on arrête le jeu 
-            if (puissance4.jeu.Statut == Statuts.Gagne)
+            var stopper = false;
+            if(statuts == Statuts.Gagne)
             {
-                continuer = true;
+                stopper = true;
                 MessageBox.Show("Vous avez gagné");
             }
-            else if (puissance4.jeu.Statut == Statuts.Perdu)
+            else if(statuts == Statuts.Perdu)
             {
-                continuer = true;
+                stopper = true;
                 MessageBox.Show("Vous avez perdu");
             }
-            return continuer;
+            else if(statuts == Statuts.Nul)
+            {
+                stopper = true;
+                MessageBox.Show("Partie nulle");
+            }
+            return stopper;
+        }
+        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Demarrage();
+            foreach(var button in gridJeu.Children.Cast<Button>().ToList())
+            {
+
+                BrushConverter bc = new BrushConverter();
+                button.Background = (Brush)bc.ConvertFrom("#FFD6D6D6");
+            }
         }
     }
 }

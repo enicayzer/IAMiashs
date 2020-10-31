@@ -23,6 +23,24 @@ namespace WpfApp2
         }
         #endregion
 
+
+        public Statuts VerifierJeu()
+        {
+            if(CompteurPoints() == 100000)
+            {
+                jeu.Statut = Statuts.Perdu;
+            }
+            else if(CompteurPoints() == -100000)
+            {
+                jeu.Statut = Statuts.Gagne;
+            }
+            else if(EstComplet())
+            {
+                jeu.Statut = Statuts.Nul;
+            }
+            return jeu.Statut;
+        }
+
         /// <summary>
         /// Permet de vérifier si le jeu est terminé 
         /// </summary>
@@ -64,6 +82,7 @@ namespace WpfApp2
                 }
                 // Récupération de l'autre joueur
                 joueur = ChangementJoueur(joueur);
+                VerifierJeu();
                 return new Tuple<bool, int?>(true, valeurRetourLigne);
             }
             else
@@ -94,12 +113,10 @@ namespace WpfApp2
             // Dans le cas ou l'humain ou la machine à 4 pions placés => Fin de la partie
             if (pointsHumain == jeu.NbrPointsGagnant)
             {
-                jeu.Statut = Statuts.Gagne;
                 return -jeu.Score;
             }
             else if (pointsMachine == jeu.NbrPointsGagnant)
             {
-                jeu.Statut = Statuts.Perdu;
                 return jeu.Score;
             }
 
