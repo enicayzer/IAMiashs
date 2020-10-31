@@ -220,8 +220,10 @@ namespace WpfApp2
         /// </summary>
         /// <param name="puissance4"></param>
         /// <param name="profondeur"></param>
+        /// <param name="a">Alpha</param>
+        /// <param name="b">Beta</param>
         /// <returns></returns>
-        private List<int?> Max(Puissance4 puissance4, int profondeur)
+        private List<int?> Max(Puissance4 puissance4, int profondeur, int? a = null, int? b = null)
         {
             var points = puissance4.CompteurPoints();
             // Si le jeu est terminée on retour une liste null
@@ -237,11 +239,16 @@ namespace WpfApp2
                 // On essaye de positionner le pion dans une colonne de la copie du puissance4
                 if (copiePuissance4.Placer(colonne).Item1)
                 {
-                    var prochainCoup = Min(copiePuissance4, profondeur - 1);
+                    var prochainCoup = Min(copiePuissance4, profondeur - 1, a, b);
                     if (maximumPoints[0] == null || prochainCoup[1] > maximumPoints[1])
                     {
                         maximumPoints[0] = colonne;
                         maximumPoints[1] = prochainCoup[1];
+                        a = prochainCoup[1];
+                    }
+                    if(a >= b)
+                    {
+                        return maximumPoints;
                     }
                 }
             }
@@ -253,8 +260,10 @@ namespace WpfApp2
         /// </summary>
         /// <param name="puissance4"></param>
         /// <param name="profondeur"></param>
+        /// <param name="a">Alpha</param>
+        /// <param name="b">Beta</param>
         /// <returns></returns>
-        private List<int?> Min(Puissance4 puissance4, int profondeur)
+        private List<int?> Min(Puissance4 puissance4, int profondeur, int? a = null, int? b = null)
         {
             var points = puissance4.CompteurPoints();
             // Si le jeu est terminée on retour une liste null
@@ -270,11 +279,16 @@ namespace WpfApp2
                 // On essaye de positionner le pion dans une colonne de la copie du puissance4
                 if (copiePuissance4.Placer(colonne).Item1)
                 {
-                    var prochainCoup = Max(copiePuissance4, profondeur - 1);
+                    var prochainCoup = Max(copiePuissance4, profondeur - 1, a, b);
                     if (minimumPoints[0] == null || prochainCoup[1] < minimumPoints[1])
                     {
                         minimumPoints[0] = colonne;
                         minimumPoints[1] = prochainCoup[1];
+                        b = prochainCoup[1];
+                    }
+                    if(a >= b)
+                    {
+                        return minimumPoints;
                     }
                 }
             }
