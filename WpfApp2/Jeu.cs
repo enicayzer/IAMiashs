@@ -12,7 +12,6 @@ namespace WpfApp2
         public int Profondeur { get; set; }
         public int Score { get; set; }
         public int Round { get; set; }
-        public object Gagnant { get; set; }
         // Nombre de points gagnant par défaut 4
         public int NbrPointsGagnant { get; set; }
     }

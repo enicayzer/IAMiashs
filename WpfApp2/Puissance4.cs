@@ -9,7 +9,7 @@ namespace WpfApp2
     public class Puissance4
     {
         #region Propriétés 
-        private Jeu jeu;
+        public Jeu jeu { get; set; }
         private int?[,] matrice; // [x,y] : x => ligne et y => colonne
         public Joueur joueur { get; set; }
         #endregion
@@ -94,10 +94,12 @@ namespace WpfApp2
             // Dans le cas ou l'humain ou la machine à 4 pions placés => Fin de la partie
             if (pointsHumain == jeu.NbrPointsGagnant)
             {
+                jeu.Statut = Statuts.Gagne;
                 return -jeu.Score;
             }
             else if (pointsMachine == jeu.NbrPointsGagnant)
             {
+                jeu.Statut = Statuts.Perdu;
                 return jeu.Score;
             }
 
@@ -106,11 +108,11 @@ namespace WpfApp2
 
         private Tuple<bool, int> VerifierScore(int score)
         {
-            if (score == jeu.Score)
+            if (score >= jeu.Score)
             {
                 return new Tuple<bool, int>(true, jeu.Score);
             }
-            if (score == -jeu.Score)
+            if (score <= -jeu.Score)
             {
                 return new Tuple<bool, int>(true, -jeu.Score);
             }
@@ -201,6 +203,7 @@ namespace WpfApp2
             // Récupération des valeurs en retour de l'IA 
             var retourIA = Max(this, jeu.Profondeur);
 
+            
             return (int)retourIA[0].Value;
         }
 

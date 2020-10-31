@@ -47,6 +47,10 @@ namespace WpfApp2
 
         private void buttonGrid_Click(object sender, RoutedEventArgs e)
         {
+            if (VerifierJeu())
+            {
+                return;
+            }
             #region Partie Humain
             // On récupère la colonne sélectionné par l'utilisateur
             var colonne = Grid.GetColumn((Button)sender);
@@ -64,6 +68,9 @@ namespace WpfApp2
             #region Partie de l'IA 
             // on appelle l'algorithme minimax 
             var retourIA = puissance4.DecisionIA();
+
+
+
             // On a la colonne sélectionné pr l'IA
             var tupleLigneRetourIA = puissance4.Placer(retourIA);
             if (!tupleLigneRetourIA.Item1)
@@ -74,7 +81,30 @@ namespace WpfApp2
                 .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetourIA.Item2 && Grid.GetColumn(e) == retourIA) as Button;
             // On change le fond en rouge du bouton sélectionné par l'IA 
             boutonCliquerIA.Background = Brushes.Red;
+
+
+            if (VerifierJeu())
+            {
+                return;
+            }
             #endregion
+        }
+
+        private bool VerifierJeu()
+        {
+            var continuer = false;
+            // Si gagnant ou perdant alors on arrête le jeu 
+            if (puissance4.jeu.Statut == Statuts.Gagne)
+            {
+                continuer = true;
+                MessageBox.Show("Vous avez gagné");
+            }
+            else if (puissance4.jeu.Statut == Statuts.Perdu)
+            {
+                continuer = true;
+                MessageBox.Show("Vous avez perdu");
+            }
+            return continuer;
         }
     }
 }
