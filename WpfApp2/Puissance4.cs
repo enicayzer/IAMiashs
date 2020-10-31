@@ -82,7 +82,6 @@ namespace WpfApp2
                 }
                 // Récupération de l'autre joueur
                 joueur = ChangementJoueur(joueur);
-                VerifierJeu();
                 return new Tuple<bool, int?>(true, valeurRetourLigne);
             }
             else
@@ -125,11 +124,11 @@ namespace WpfApp2
 
         private Tuple<bool, int> VerifierScore(int score)
         {
-            if (score >= jeu.Score)
+            if (score == jeu.Score)
             {
                 return new Tuple<bool, int>(true, jeu.Score);
             }
-            if (score <= -jeu.Score)
+            if (score == -jeu.Score)
             {
                 return new Tuple<bool, int>(true, -jeu.Score);
             }
@@ -148,41 +147,46 @@ namespace WpfApp2
                     // On compte les points vertical
                     if (ligne < jeu.Ligne - 3)
                     {
-                        pointsVertical += PointsParPosition(ligne, colonne, 1, 0);
-                        var scoreVerifie = VerifierScore(pointsVertical);
+                        var point = PointsParPosition(ligne, colonne, 1, 0);
+                        var scoreVerifie = VerifierScore(point);
                         if (scoreVerifie.Item1)
                         {
                             return scoreVerifie.Item2;
                         }
+                        pointsVertical += point;
                     }
                     // On compte les points horizontal
                     if (colonne < jeu.Colonne - 3)
                     {
-                        pointsHorizontal += PointsParPosition(ligne, colonne, 0, 1);
-                        var scoreVerifie = VerifierScore(pointsHorizontal);
+                        var point = PointsParPosition(ligne, colonne, 0, 1);
+                        var scoreVerifie = VerifierScore(point);
                         if (scoreVerifie.Item1)
                         {
                             return scoreVerifie.Item2;
                         }
+                        pointsHorizontal += point;
                     }
                     // On compte les points dans la diagonal
                     if (ligne < jeu.Ligne - 3 && colonne < jeu.Colonne - 3)
                     {
-                        pointsDiagonal += PointsParPosition(ligne, colonne, 1, 1);
-                        var scoreVerifie = VerifierScore(pointsDiagonal);
+                        var point = PointsParPosition(ligne, colonne, 1, 1);
+                        var scoreVerifie = VerifierScore(point);
                         if (scoreVerifie.Item1)
                         {
                             return scoreVerifie.Item2;
                         }
+                        pointsDiagonal += point;
                     }
                     // On compte les points dans l'autre diagonal
                     if (ligne > 2 && colonne <= jeu.Colonne - 4)
                     {
-                        pointsDiagonal2 += PointsParPosition(ligne, colonne, -1, +1);
-                        if (VerifierScore(pointsDiagonal2).Item1)
+                        var point =  PointsParPosition(ligne, colonne, -1, +1);
+                        var scoreVerifie = VerifierScore(point);
+                        if (scoreVerifie.Item1)
                         {
-                            return VerifierScore(pointsDiagonal2).Item2;
+                            return scoreVerifie.Item2;
                         }
+                        pointsDiagonal2 += point;
                     }
                     #endregion
                 }
@@ -266,7 +270,7 @@ namespace WpfApp2
                         maximumPoints[1] = prochainCoup[1];
                         a = prochainCoup[1];
                     }
-                    if(a >= b)
+                    if(a >= b && jeu.EstAlphaBeta)
                     {
                         return maximumPoints;
                     }
@@ -306,7 +310,7 @@ namespace WpfApp2
                         minimumPoints[1] = prochainCoup[1];
                         b = prochainCoup[1];
                     }
-                    if(a >= b)
+                    if(a >= b && jeu.EstAlphaBeta)
                     {
                         return minimumPoints;
                     }

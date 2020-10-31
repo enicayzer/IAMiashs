@@ -322,6 +322,15 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Restart" HorizontalAlignment="Left" Margin="-57,-40,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Restart" Tag="Restart" HorizontalAlignment="Left" Margin="-57,-40,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <ComboBox Name="minMaxBox" HorizontalAlignment="Left" Margin="12,-42,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2">
+            <ComboBoxItem Tag="MinMax" IsSelected="True" Content="MinMax"/>
+            <ComboBoxItem Tag="AlphaBeta" Content="AlphaBeta"/>
+        </ComboBox>
+        <ComboBox Name="profondeurBox" HorizontalAlignment="Left" Margin="62,-42,0,0" VerticalAlignment="Top" Width="157" Grid.ColumnSpan="3" Grid.Column="1">
+            <ComboBoxItem Tag="2"  Content="Profondeur 2 (facile)"/>
+            <ComboBoxItem Tag="4"  IsSelected="True" Content="Profondeur 4 (moyen)"/>
+            <ComboBoxItem Tag="6" Content="Profondeur 6 (difficile)"/>
+        </ComboBox>
     </Grid>
 </Window>

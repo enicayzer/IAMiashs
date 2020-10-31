@@ -27,18 +27,27 @@ namespace WpfApp2
         {
             InitializeComponent();
             Demarrage();
+
         }
 
         public void Demarrage()
         {
+            // Récupération des données des combobox
+            var minMax = (minMaxBox.SelectedItem as ComboBoxItem).Tag.ToString();
+            var profondeur = (profondeurBox.SelectedItem as ComboBoxItem).Tag.ToString();
+
             // Initialisation des données
             var game = new Jeu();
             game.Ligne = 6;
             game.Colonne = 7;
             game.Statut = Statuts.EnCours;
-            game.Profondeur = 2;
+            game.Profondeur = int.Parse(profondeur);
             game.Score = 100000;
             game.NbrPointsGagnant = 4;
+            if(minMax != "MinMax")
+            {
+                game.EstAlphaBeta = true;
+            }
 
             // Initialisation du jeu
             puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0);
@@ -93,33 +102,36 @@ namespace WpfApp2
         private bool AffichageMessageFin(Statuts statuts)
         {
             var stopper = false;
-            if(statuts == Statuts.Gagne)
+            if (statuts == Statuts.Gagne)
             {
                 stopper = true;
                 MessageBox.Show("Vous avez gagné");
             }
-            else if(statuts == Statuts.Perdu)
+            else if (statuts == Statuts.Perdu)
             {
                 stopper = true;
                 MessageBox.Show("Vous avez perdu");
             }
-            else if(statuts == Statuts.Nul)
+            else if (statuts == Statuts.Nul)
             {
                 stopper = true;
                 MessageBox.Show("Partie nulle");
             }
             return stopper;
         }
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Demarrage();
-            foreach(var button in gridJeu.Children.Cast<Button>().ToList())
+            foreach (var uiElement in gridJeu.Children.Cast<UIElement>().ToList())
             {
-
-                BrushConverter bc = new BrushConverter();
-                button.Background = (Brush)bc.ConvertFrom("#FFD6D6D6");
+                var button = uiElement as Button;
+                if (button != null && button.Tag != "Restart")
+                {
+                    BrushConverter bc = new BrushConverter();
+                    button.Background = (Brush)bc.ConvertFrom("#FFD6D6D6");
+                }
             }
         }
     }
