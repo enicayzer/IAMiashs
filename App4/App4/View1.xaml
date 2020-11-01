@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.MainPage">
+
+    <StackLayout Padding="5">
+
+        <StackLayout x:Name="accueil_Layout">
+
+            <Image Source="_assets/images/img_accueil.jpg" Margin="0,40,0,0" />
+
+            <Entry Placeholder="Joueur_1" WidthRequest="200" x:Name="j1_Name" Text="Joueur_1" />
+            <FlexLayout Direction="Row">
+                <Switch IsToggled="false" WidthRequest="100" x:Name="j1_IA" />
+                <Picker Title="Niveau" VerticalOptions="Center" x:Name="j1_IA_Level">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Facile</x:String>
+                            <x:String>Moyen</x:String>
+                            <x:String>Difficle</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </FlexLayout>
+
+            <Entry Placeholder="Joueur_2" WidthRequest="200" x:Name="j2_Name" Text="Joueur_2" Margin="0,20,0,0"/>
+            <FlexLayout>
+                <Switch IsToggled="false" WidthRequest="100" x:Name="j2_IA" />
+                <Picker Title="Niveau" VerticalOptions="Center" x:Name="j2_IA_Level">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Facile</x:String>
+                            <x:String>Moyen</x:String>
+                            <x:String>Difficle</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </FlexLayout>
+
+            <Button Text="Commencer" Clicked="init_Game_Parameters" Margin="0,20,0,0"/>
+
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
