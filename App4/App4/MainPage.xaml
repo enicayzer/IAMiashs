@@ -4,7 +4,82 @@
              x:Class="App4.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+
+        <Grid Margin="82,49,83,19" BackgroundColor="#FFD6D6D6" x:Name="gridJeu" ClassId="gridJeu" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button CornerRadius="100" x:Name="button0_0" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button0_1" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button0_2" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button0_3" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button0_4" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button0_5" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button0_6" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="0" Text="" />
+            <Button CornerRadius="50" x:Name="button1_0" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button1_1" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button1_2" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button1_3" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button1_4" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button1_5" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button1_6" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="1" Text="" />
+            <Button CornerRadius="50" x:Name="button2_0" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button2_1" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button2_2" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button2_3" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button2_4" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button2_5" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button2_6" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="2" Text="" />
+            <Button CornerRadius="50" x:Name="button3_0" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button3_1" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button3_2" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button3_3" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button3_4" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button3_5" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button3_6" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="3" Text="" />
+            <Button CornerRadius="50" x:Name="button4_0" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button4_1" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button4_2" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button4_3" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button4_4" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button4_5" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button4_6" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="4" Text="" />
+            <Button CornerRadius="50" x:Name="button5_0" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="0" Grid.Row="5" Text="" />
+            <Button CornerRadius="50" x:Name="button5_1" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="1" Grid.Row="5" Text="" />
+            <Button CornerRadius="50" x:Name="button5_2" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="2" Grid.Row="5" Text="" />
+            <Button CornerRadius="50" x:Name="button5_3" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="3" Grid.Row="5" Text="" />
+            <Button CornerRadius="50" x:Name="button5_4" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="4" Grid.Row="5" Text="" />
+            <Button CornerRadius="50" x:Name="button5_5" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="5" Grid.Row="5" Text="" />
+            <Button CornerRadius="50" x:Name="button5_6" Clicked="buttonGrid_Click" FontSize="70" Grid.Column="6" Grid.Row="5" Text="" />
+            <!--<Button Text="Restart" Margin="-57,-40,0,0" Clicked="Button_Click"/>-->
+            <!--<ComboBox Name="minMaxBox" HorizontalAlignment="Left" Margin="12,-42,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2">
+                <ComboBoxItem Tag="MinMax" IsSelected="True" Content="MinMax"/>
+                <ComboBoxItem Tag="AlphaBeta" Content="AlphaBeta"/>
+            </ComboBox>
+            <ComboBox Name="profondeurBox" HorizontalAlignment="Left" Margin="62,-42,0,0" VerticalAlignment="Top" Width="157" Grid.ColumnSpan="3" Grid.Column="1">
+                <ComboBoxItem Tag="2"  Content="Profondeur 2 (facile)"/>
+                <ComboBoxItem Tag="4"  IsSelected="True" Content="Profondeur 4 (moyen)"/>
+                <ComboBoxItem Tag="6" Content="Profondeur 6 (difficile)"/>
+            </ComboBox>-->
+        </Grid>
+
+
+        <!--<Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
@@ -18,7 +93,7 @@
                     </FormattedString.Spans>
                 </FormattedString>
             </Label.FormattedText>
-        </Label>
+        </Label>-->
     </StackLayout>
 
 </ContentPage>
