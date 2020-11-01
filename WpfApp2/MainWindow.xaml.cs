@@ -74,6 +74,11 @@ namespace WpfApp2
             boutonCliquer.Background = Brushes.Blue;
             #endregion
 
+            if (AffichageMessageFin(puissance4.VerifierJeu()))
+            {
+                return;
+            }
+
             #region Partie de l'IA 
             // on appelle l'algorithme minimax 
             var retourIA = puissance4.DecisionIA();
@@ -127,7 +132,8 @@ namespace WpfApp2
             foreach (var uiElement in gridJeu.Children.Cast<UIElement>().ToList())
             {
                 var button = uiElement as Button;
-                if (button != null && button.Tag != "Restart")
+                if (button != null && (button.Tag == null 
+                    || (button.Tag != null &&  button.Tag.ToString() != "Restart")))
                 {
                     BrushConverter bc = new BrushConverter();
                     button.Background = (Brush)bc.ConvertFrom("#FFD6D6D6");
