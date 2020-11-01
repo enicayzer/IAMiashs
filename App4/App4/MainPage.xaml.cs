@@ -100,17 +100,17 @@ namespace App4
             if (statuts == Statuts.Gagne)
             {
                 stopper = true;
-                DisplayAlert("Fin", "vous avez gagné", "non");
+                DisplayAlert("Fin de partie", "vous avez gagné", "ok");
             }
             else if (statuts == Statuts.Perdu)
             {
                 stopper = true;
-                DisplayAlert("Fin", "vous avez perdu", "non");
+                DisplayAlert("Fin de partie", "vous avez perdu", "ok");
             }
             else if (statuts == Statuts.Nul)
             {
                 stopper = true;
-                DisplayAlert("Fin", "Partie nulle", "non");
+                DisplayAlert("Fin de partie", "Partie nulle", "ok");
             }
             return stopper;
         }
