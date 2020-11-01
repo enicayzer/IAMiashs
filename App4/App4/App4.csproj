@@ -16,8 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View1.xaml">
+    <EmbeddedResource Update="Page1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="images\img_accueil.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

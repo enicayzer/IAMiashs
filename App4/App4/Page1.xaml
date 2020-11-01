@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.MainPage">
+             x:Class="App4.Page1">
 
     <StackLayout Padding="5">
 
         <StackLayout x:Name="accueil_Layout">
 
-            <Image Source="_assets/images/img_accueil.jpg" Margin="0,40,0,0" />
+            <Image Source="images/img_accueil.jpg" Margin="0,40,0,0" />
 
             <Entry Placeholder="Joueur_1" WidthRequest="200" x:Name="j1_Name" Text="Joueur_1" />
             <FlexLayout Direction="Row">
@@ -37,7 +37,7 @@
                 </Picker>
             </FlexLayout>
 
-            <Button Text="Commencer" Clicked="init_Game_Parameters" Margin="0,20,0,0"/>
+            <Button Text="Commencer" Clicked="StartGame" Margin="0,20,0,0"/>
 
         </StackLayout>
 

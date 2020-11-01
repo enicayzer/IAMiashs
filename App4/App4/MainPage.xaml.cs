@@ -130,6 +130,10 @@ namespace App4
                 //}
             }
         }
+        private void RetourMenu(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Page1());
+        }
     }
 
 }

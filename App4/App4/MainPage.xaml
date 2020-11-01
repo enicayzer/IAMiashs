@@ -6,7 +6,7 @@
     <StackLayout>
         <FlexLayout Direction="Row">
             <Button Text="Nouveau"></Button>
-            <Button Text="Retour"></Button>
+            <Button Text="Retour" Clicked="RetourMenu"></Button>
         </FlexLayout>
 
         <Grid BackgroundColor="#FFD6D6D6" x:Name="gridJeu" ClassId="gridJeu" >
