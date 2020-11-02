@@ -92,34 +92,34 @@ namespace App4
 
         private int PointsParPosition(int ligne, int colonne, int axeY, int axeX)
         {
-            var pointsHumain = 0;
-            var pointsMachine = 0;
+            var pointJoueur1 = 0;
+            var pointJoueur2 = 0;
 
             for (var i = 0; i < jeu.NbrPointsGagnant; i++)
             {
                 if (ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne, colonne] == 0)
                 {
-                    pointsHumain = pointsHumain + 1;
+                    pointJoueur1 = pointJoueur1 + 1;
                 }
                 else if (ligne >= 0 && ligne < jeu.Ligne && colonne >= 0 && colonne < jeu.Colonne && matrice[ligne, colonne] == 1)
                 {
-                    pointsMachine = pointsMachine + 1;
+                    pointJoueur2 = pointJoueur2 + 1;
                 }
                 ligne += axeY;
                 colonne += axeX;
             }
 
-            // Dans le cas ou l'humain ou la machine à 4 pions placés => Fin de la partie
-            if (pointsHumain == jeu.NbrPointsGagnant)
+            // Dans le cas ou le joueur1 ou le joueur 2 à 4 pions placés => Fin de la partie
+            if (pointJoueur1 == jeu.NbrPointsGagnant)
             {
                 return -jeu.Score;
             }
-            else if (pointsMachine == jeu.NbrPointsGagnant)
+            else if (pointJoueur2 == jeu.NbrPointsGagnant)
             {
                 return jeu.Score;
             }
 
-            return pointsMachine;
+            return pointJoueur2;
         }
 
         private Tuple<bool, int> VerifierScore(int score)
@@ -216,10 +216,10 @@ namespace App4
         /// Méthode qui retourne la colonne choisie par l'IA
         /// </summary>
         /// <returns></returns>
-        public int DecisionIA()
+        public int DecisionIA(Joueur joueurIA)
         {
             // Changement de joueur
-            joueur = Joueur.Machine;
+            joueur = joueurIA;
 
             // Récupération des valeurs en retour de l'IA 
             var retourIA = Max(this, jeu.Profondeur);
@@ -236,7 +236,7 @@ namespace App4
         public Joueur ChangementJoueur(Joueur round)
         {
             // Changement de joueur si Humain ou machine
-            return round == Joueur.Machine ? Joueur.Humain : Joueur.Machine;
+            return round == Joueur.Joueur2 ? Joueur.Joueur1 : Joueur.Joueur2;
         }
 
         /// <summary>

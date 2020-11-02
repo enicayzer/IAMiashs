@@ -71,7 +71,7 @@ namespace App4
 
             #region Partie de l'IA 
             // on appelle l'algorithme minimax 
-            var retourIA = puissance4.DecisionIA();
+            var retourIA = puissance4.DecisionIA(Joueur.Joueur2);
 
 
 
@@ -93,6 +93,9 @@ namespace App4
             }
             #endregion
         }
+
+        
+
 
         private bool AffichageMessageFin(Statuts statuts)
         {
