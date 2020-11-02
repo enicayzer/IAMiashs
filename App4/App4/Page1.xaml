@@ -6,8 +6,8 @@
     <StackLayout Padding="5">
 
         <StackLayout x:Name="accueil_Layout">
-
-            <Image Source="images/img_accueil.jpg" Margin="0,40,0,0" />
+            
+            <Image Source="_assets/images/img_accueil.jpg" Margin="0,40,0,0" />
 
             <Entry Placeholder="Joueur_1" WidthRequest="200" x:Name="j1_Name" Text="Joueur_1" />
             <FlexLayout Direction="Row">
@@ -21,6 +21,8 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
+                <Label Text="AlphaBeta" Margin="30,15,0,0"/>
+                <Switch IsToggled="false" WidthRequest="100" x:Name="j1_AlphaBeta" Margin="-25,0,0,0" />
             </FlexLayout>
 
             <Entry Placeholder="Joueur_2" WidthRequest="200" x:Name="j2_Name" Text="Joueur_2" Margin="0,20,0,0"/>
@@ -32,10 +34,11 @@
                             <x:String>Facile</x:String>
                             <x:String>Moyen</x:String>
                             <x:String>Difficle</x:String>
-                            <x:String>Super Difficle</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
+                <Label Text="AlphaBeta" Margin="30,15,0,0"/>
+                <Switch IsToggled="false" WidthRequest="100" x:Name="j2_AlphaBeta" Margin="-25,0,0,0" />
             </FlexLayout>
 
             <Button Text="Commencer" Clicked="StartGame" Margin="0,20,0,0"/>

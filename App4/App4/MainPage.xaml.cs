@@ -12,13 +12,13 @@ namespace App4
     {
         private Puissance4 puissance4;
 
-        public MainPage()
+        public MainPage(Parametres parametres)
         {
             InitializeComponent();
-            Demarrage();
+            Demarrage(parametres);
         }
 
-        public void Demarrage()
+        public void Demarrage(Parametres parametres)
         {
             // Récupération des données des combobox
             //var minMax = (minMaxBox.SelectedItem as ComboBoxItem).Tag.ToString();
@@ -118,7 +118,7 @@ namespace App4
 
         private void NouvellePartie_Click(object sender, EventArgs e)
         {
-            Demarrage();
+            //Demarrage();
             foreach (var uiElement in gridJeu.Children.Cast<Button>().ToList())
             {
                 uiElement.BackgroundColor = Color.White;
