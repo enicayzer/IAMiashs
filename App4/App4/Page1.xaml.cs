@@ -29,6 +29,12 @@ namespace App4
             //*** Check si les champs sont renseignés ***
             if (!string.IsNullOrEmpty(j1_Name.Text) && !string.IsNullOrEmpty(j2_Name.Text))
             {
+                //*** Parametres Joueurs ***
+                parametres.TypeJoueur1 = Joueur.Joueur1;
+                parametres.NomJoueur1 = j1_Name.Text;
+                parametres.TypeJoueur2 = Joueur.Joueur2;
+                parametres.NomJoueur2 = j2_Name.Text;
+
                 //*** On regarde s'il faut des IA ***
                 bool is_j1_IA = j1_IA.IsToggled;
                 bool is_j2_IA = j2_IA.IsToggled;
@@ -44,20 +50,14 @@ namespace App4
                 }
                 else
                 {
+                    //*** Gestion des Parametres IA ***
                     if (is_j1_IA)
                     {
                         if (is_j1_IA_AB)
                         {
                             parametres.Joueur1AlphaBeta = true;
                         }
-                        parametres.TypeJoueur1 = Joueur.Machine;
-                        parametres.NomJoueur1 = j1_Name.Text;
                         parametres.NiveauJoueur1 = parametres.GetIALevelByLabel(j1_IA_Level.Items[j1_IA_Level.SelectedIndex]);
-                    }
-                    else
-                    {
-                        parametres.TypeJoueur1 = Joueur.Humain;
-                        parametres.NomJoueur1 = j1_Name.Text;
                     }
                     if (is_j2_IA)
                     {
@@ -65,14 +65,7 @@ namespace App4
                         {
                             parametres.Joueur2AlphaBeta = true;
                         }
-                        parametres.TypeJoueur2 = Joueur.Machine;
-                        parametres.NomJoueur2 = j2_Name.Text;
                         parametres.NiveauJoueur2 = parametres.GetIALevelByLabel(j2_IA_Level.Items[j2_IA_Level.SelectedIndex]);
-                    }
-                    else
-                    {
-                        parametres.TypeJoueur2 = Joueur.Humain;
-                        parametres.NomJoueur2 = j2_Name.Text;
                     }
 
                     //*** Lancement du jeu avec les parametres ***
