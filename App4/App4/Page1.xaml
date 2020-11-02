@@ -32,6 +32,7 @@
                             <x:String>Facile</x:String>
                             <x:String>Moyen</x:String>
                             <x:String>Difficle</x:String>
+                            <x:String>Super Difficle</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
