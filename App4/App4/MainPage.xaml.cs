@@ -61,7 +61,7 @@ namespace App4
             var boutonCliquer = gridJeu.Children.Cast<Button>()
                 .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetour.Item2 && Grid.GetColumn(e) == colonne);
             // On change le bouton en bleu du bouton cliqué par l'utilisateur
-            boutonCliquer.BackgroundColor = Color.Blue;
+            boutonCliquer.BackgroundColor = Color.Yellow;
             #endregion
 
             if (AffichageMessageFin(puissance4.VerifierJeu()))
@@ -100,12 +100,12 @@ namespace App4
             if (statuts == Statuts.Gagne)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "vous avez gagné", "ok");
+                DisplayAlert("Fin de partie", "Vous avez gagné", "ok");
             }
             else if (statuts == Statuts.Perdu)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "vous avez perdu", "ok");
+                DisplayAlert("Fin de partie", "Vous avez perdu", "ok");
             }
             else if (statuts == Statuts.Nul)
             {
@@ -116,11 +116,12 @@ namespace App4
         }
 
 
-        private void Button_Click(object sender, EventArgs e)
+        private void NouvellePartie_Click(object sender, EventArgs e)
         {
             Demarrage();
             foreach (var uiElement in gridJeu.Children.Cast<Button>().ToList())
             {
+                uiElement.BackgroundColor = Color.White;
                 //var button = uiElement as Button;
                 //if (button != null && (button.Tag == null
                 //    || (button.Tag != null && button.Tag.ToString() != "Restart")))
@@ -130,7 +131,7 @@ namespace App4
                 //}
             }
         }
-        private void RetourMenu(object sender, EventArgs e)
+        private void RetourMenu_Click(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Page1());
         }
