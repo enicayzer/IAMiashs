@@ -51,39 +51,30 @@ namespace WpfApp2
 
             // Initialisation du jeu
             puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0);
+
+            // Si que IA 
+            while (AffichageMessageFin(puissance4.VerifierJeu()){
+                JoueurMachineAlgo();
+            }
+
         }
 
         private void buttonGrid_Click(object sender, RoutedEventArgs e)
         {
-            if (AffichageMessageFin(puissance4.VerifierJeu()))
-            {
-                return;
-            }
-
-            #region Partie Humain
-            // On récupère la colonne sélectionné par l'utilisateur
-            var colonne = Grid.GetColumn((Button)sender);
-            var tupleLigneRetour = puissance4.Placer(colonne);
-            if (!tupleLigneRetour.Item1)
-            {
-                return;
-            }
-            var boutonCliquer = gridJeu.Children.Cast<Button>()
-                .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetour.Item2 && Grid.GetColumn(e) == colonne);
-            // On change le bouton en bleu du bouton cliqué par l'utilisateur
-            boutonCliquer.Background = Brushes.Blue;
+            #region Partie Joueur 1
+            JoueurHumainAlgo();
             #endregion
 
-            if (AffichageMessageFin(puissance4.VerifierJeu()))
-            {
-                return;
-            }
-
             #region Partie de l'IA 
+            JoueurMachineAlgo();
+            #endregion
+        }
+
+
+        private void JoueurMachineAlgo()
+        {
             // on appelle l'algorithme minimax 
             var retourIA = puissance4.DecisionIA();
-
-
 
             // On a la colonne sélectionné pr l'IA
             var tupleLigneRetourIA = puissance4.Placer(retourIA);
@@ -94,15 +85,34 @@ namespace WpfApp2
             var boutonCliquerIA = gridJeu.Children.Cast<UIElement>()
                 .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetourIA.Item2 && Grid.GetColumn(e) == retourIA) as Button;
             // On change le fond en rouge du bouton sélectionné par l'IA 
-            boutonCliquerIA.Background = Brushes.Red;
-
+            boutonCliquerIA.Background = Color.Red;
 
             if (AffichageMessageFin(puissance4.VerifierJeu()))
             {
                 return;
             }
-            #endregion
         }
+
+        private void JoueurHumainAlgo()
+        {
+            // On récupère la colonne sélectionné par l'utilisateur
+            var colonne = Grid.GetColumn((Button)sender);
+            var tupleLigneRetour = puissance4.Placer(colonne);
+            if (!tupleLigneRetour.Item1)
+            {
+                return;
+            }
+            var boutonCliquer = gridJeu.Children.Cast<Button>()
+                .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetour.Item2 && Grid.GetColumn(e) == colonne);
+            // On change le bouton en bleu du bouton cliqué par l'utilisateur
+            boutonCliquer.Background = Color.Blue;
+
+            if (AffichageMessageFin(puissance4.VerifierJeu()))
+            {
+                return;
+            }
+        }
+
 
         private bool AffichageMessageFin(Statuts statuts)
         {

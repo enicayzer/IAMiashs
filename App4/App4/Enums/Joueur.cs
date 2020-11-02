@@ -6,7 +6,7 @@ namespace App4
 {
     public enum Joueur
     {
-        Humain = 0,
-        Machine = 1
+        Joueur1 = 0,
+        Joueur2 = 1
     }
 }

@@ -71,7 +71,7 @@ namespace App4
 
             #region Partie de l'IA 
             // on appelle l'algorithme minimax 
-            var retourIA = puissance4.DecisionIA();
+            var retourIA = puissance4.DecisionIA(Joueur.Joueur2);
 
 
 
@@ -94,6 +94,9 @@ namespace App4
             #endregion
         }
 
+        
+
+
         private bool AffichageMessageFin(Statuts statuts)
         {
             var stopper = false;
@@ -110,7 +113,7 @@ namespace App4
             else if (statuts == Statuts.Nul)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "Partie nulle", "ok");
+                DisplayAlert("Fin de partie", "Match nul", "ok");
             }
             return stopper;
         }

@@ -5,8 +5,7 @@
 
     <StackLayout BackgroundColor="#25E1FF">
         <FlexLayout Margin="20,20,0,0" Direction="Row">
-            <Button Text="Retour" BackgroundColor="White" Clicked="RetourMenu_Click"></Button>
-            <Button Margin="10,0,0,0" Text="Nouveau" BackgroundColor="White" Clicked="NouvellePartie_Click"></Button>
+            <Button Margin="10,0,0,0" Text="Nouvelle partie" BackgroundColor="White" Clicked="NouvellePartie_Click"></Button>
         </FlexLayout>
 
         <Grid Margin="5,10,5,5" BackgroundColor="#25E1FF" x:Name="gridJeu" ClassId="gridJeu" >
