@@ -110,7 +110,7 @@ namespace App4
             else if (statuts == Statuts.Nul)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "Partie nulle", "ok");
+                DisplayAlert("Fin de partie", "Match nul", "ok");
             }
             return stopper;
         }
