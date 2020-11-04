@@ -55,7 +55,7 @@ namespace App4
             return isJoueur ? false : true;
         }
 
-        public void Demarrage()
+        public void Demarrage(Parametres parametres)
         {
             // Récupération des données des combobox
             //var minMax = (minMaxBox.SelectedItem as ComboBoxItem).Tag.ToString();
