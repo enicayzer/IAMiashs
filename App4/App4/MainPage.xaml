@@ -8,6 +8,19 @@
             <Button Margin="10,0,0,0" Text="Nouvelle partie" BackgroundColor="White" Clicked="NouvellePartie_Click"></Button>
         </FlexLayout>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label FontSize="20" x:Name="Joueur1Afficher" Grid.Column="0" Grid.Row="0" ></Label>
+            <Label FontSize="20" x:Name="Joueur2Afficher" Grid.Column="1" Grid.Row="0"></Label>
+        </Grid>
+        
+        
         <Grid Margin="5,10,5,5" BackgroundColor="#25E1FF" x:Name="gridJeu" ClassId="gridJeu" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.14*"></ColumnDefinition>

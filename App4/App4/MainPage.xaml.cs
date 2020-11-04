@@ -31,7 +31,7 @@ namespace App4
                 return;
             }
 
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             // On a la colonne sélectionné pr l'IA
             var tupleLigneRetourIA = puissance4.Placer(3);
             var boutonCliquerIA = gridJeu.Children.Cast<Button>()
@@ -54,7 +54,7 @@ namespace App4
                 while (!AffichageMessageFin(puissance4.VerifierJeu()))
                 {
                     await Task.Delay(200);
-                    if (JoueurIA(isJoueur1, parametres.Joueur1isIA ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
+                    if (JoueurIA(isJoueur1, isJoueur1 ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
                     {
                         return;
                     }
@@ -81,6 +81,8 @@ namespace App4
 
             // On stock en mémoire les paramètres du début
             this.parametres = parametres;
+            Joueur1Afficher.Text = parametres.NomJoueur1;
+            Joueur2Afficher.Text = parametres.NomJoueur2;
 
             // Initialisation du jeu
             puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0, true);
@@ -88,31 +90,31 @@ namespace App4
 
         private void buttonGrid_Click(object sender, EventArgs evenement)
         {
-            if (AffichageMessageFin(puissance4.VerifierJeu()))
+            // Si il s'agit de 2 IA 
+            if (AffichageMessageFin(puissance4.VerifierJeu()) || (parametres.Joueur1isIA && parametres.Joueur2isIA))
             {
                 return;
             }
 
-            // Si il s'agit de 2 IA 
-            if (parametres.Joueur1isIA && parametres.Joueur2isIA)
-            {
-                return;
-            }
             #region Partie Humain
+            // Lors d'un clique d'un humain
             if (JoueurHumain(sender))
             {
                 return;
             }
             #endregion
-            if (parametres.Joueur2isIA)
+
+            #region Partie de l'IA 
+            // Si une IA est en joueur
+            if (parametres.Joueur2isIA || parametres.Joueur1isIA)
             {
-                #region Partie de l'IA 
                 if (JoueurIA(parametres.Joueur1isIA, parametres.Joueur1isIA ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
                 {
                     return;
                 }
             }
 
+            // On vérifie à la fin si le jeu est gagnant 
             if (AffichageMessageFin(puissance4.VerifierJeu()))
             {
                 return;
