@@ -12,10 +12,10 @@ namespace App4
     {
         private Puissance4 puissance4;
 
-        public MainPage()
+        public MainPage(Parametres parametres)
         {
             InitializeComponent();
-            Demarrage();
+            Demarrage(parametres);
         }
 
         protected async override void OnAppearing()
@@ -166,7 +166,7 @@ namespace App4
 
         private void NouvellePartie_Click(object sender, EventArgs e)
         {
-            Demarrage();
+            //Demarrage();
             foreach (var uiElement in gridJeu.Children.Cast<Button>().ToList())
             {
                 uiElement.BackgroundColor = Color.White;

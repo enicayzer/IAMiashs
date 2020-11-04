@@ -133,4 +133,7 @@
       <Name>App4</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_accueil.jpg" />
+  </ItemGroup>
 </Project>
