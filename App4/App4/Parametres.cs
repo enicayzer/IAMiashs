@@ -12,6 +12,8 @@ namespace App4
         public Joueur TypeJoueur2 { get; set; }
         public int NiveauJoueur1 { get; set; }
         public int NiveauJoueur2 { get; set; }
+        public Boolean Joueur1isIA { get; set; }
+        public Boolean Joueur2isIA { get; set; }
         public Boolean Joueur1AlphaBeta { get; set; }
         public Boolean Joueur2AlphaBeta { get; set; }
         public Statuts Statut { get; set; }
@@ -20,7 +22,6 @@ namespace App4
         public int NbPointsGagnants { get; set; }
         public int Score { get; set; }
         
-
         public Parametres()
         {
         }

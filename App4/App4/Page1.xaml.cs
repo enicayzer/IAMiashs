@@ -53,18 +53,14 @@ namespace App4
                     //*** Gestion des Parametres IA ***
                     if (is_j1_IA)
                     {
-                        if (is_j1_IA_AB)
-                        {
-                            parametres.Joueur1AlphaBeta = true;
-                        }
+                        parametres.Joueur1isIA = is_j1_IA;
+                        parametres.Joueur1AlphaBeta = is_j1_IA_AB;
                         parametres.NiveauJoueur1 = parametres.GetIALevelByLabel(j1_IA_Level.Items[j1_IA_Level.SelectedIndex]);
                     }
                     if (is_j2_IA)
                     {
-                        if (is_j2_IA_AB)
-                        {
-                            parametres.Joueur2AlphaBeta = true;
-                        }
+                        parametres.Joueur2isIA = is_j2_IA;
+                        parametres.Joueur2AlphaBeta = is_j2_IA_AB;
                         parametres.NiveauJoueur2 = parametres.GetIALevelByLabel(j2_IA_Level.Items[j2_IA_Level.SelectedIndex]);
                     }
 
