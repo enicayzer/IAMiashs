@@ -201,7 +201,7 @@ namespace App4
 
         private void NouvellePartie_Click(object sender, EventArgs e)
         {
-            //Demarrage();
+            Demarrage(parametres);
             foreach (var uiElement in gridJeu.Children.Cast<Button>().ToList())
             {
                 uiElement.BackgroundColor = Color.White;

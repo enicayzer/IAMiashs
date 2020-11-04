@@ -8,7 +8,7 @@
             <Button Margin="10,0,0,0" Text="Nouvelle partie" BackgroundColor="White" Clicked="NouvellePartie_Click"></Button>
         </FlexLayout>
 
-        <Grid>
+        <Grid Margin="10,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -16,8 +16,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label FontSize="20" x:Name="Joueur1Afficher" Grid.Column="0" Grid.Row="0" ></Label>
-            <Label FontSize="20" x:Name="Joueur2Afficher" Grid.Column="1" Grid.Row="0"></Label>
+            <Label FontSize="20" x:Name="Joueur1Afficher" Text="Player1" Grid.Column="0" Grid.Row="0" ></Label>
+            <Label FontSize="20" x:Name="Joueur2Afficher" Text="Player2"  Grid.Column="1" Grid.Row="0"></Label>
         </Grid>
         
         
