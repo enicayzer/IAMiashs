@@ -78,34 +78,45 @@ namespace App4
             game.Statut = Statuts.EnCours;
             game.Score = parametres.Score;
             game.NbrPointsGagnant = parametres.NbPointsGagnants;
-            
+
             // On stock en mémoire les paramètres du début
             this.parametres = parametres;
-            
+
             // Initialisation du jeu
             puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0, true);
         }
 
         private void buttonGrid_Click(object sender, EventArgs evenement)
         {
-            // Si il s'agit de 2 IA 
-            if(parametres.Joueur1isIA && parametres.Joueur2isIA)
+            if (AffichageMessageFin(puissance4.VerifierJeu()))
             {
                 return;
             }
 
+            // Si il s'agit de 2 IA 
+            if (parametres.Joueur1isIA && parametres.Joueur2isIA)
+            {
+                return;
+            }
             #region Partie Humain
             if (JoueurHumain(sender))
             {
                 return;
             }
             #endregion
+            if (parametres.Joueur2isIA)
+            {
+                #region Partie de l'IA 
+                if (JoueurIA(parametres.Joueur1isIA, parametres.Joueur1isIA ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
+                {
+                    return;
+                }
+            }
 
-            #region Partie de l'IA 
-            if (JoueurIA(parametres.Joueur1isIA, parametres.Joueur1isIA ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
+            if (AffichageMessageFin(puissance4.VerifierJeu()))
             {
                 return;
-            };
+            }
             #endregion
         }
 
@@ -123,7 +134,7 @@ namespace App4
             var boutonCliquerIA = gridJeu.Children.Cast<Button>()
                 .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetourIA.Item2 && Grid.GetColumn(e) == retourIA) as Button;
             // On change le fond en rouge du bouton sélectionné par l'IA 
-            if(puissance4.joueur == Joueur.Joueur1)
+            if (puissance4.joueur == Joueur.Joueur1)
             {
                 boutonCliquerIA.BackgroundColor = Color.Red;
             }
@@ -164,7 +175,6 @@ namespace App4
             }
             return false;
         }
-
 
         private bool AffichageMessageFin(Statuts statuts)
         {
