@@ -12,7 +12,5 @@ namespace App4
         public int Score { get; set; }
         // Nombre de points gagnant par défaut 4
         public int NbrPointsGagnant { get; set; }
-
-        public bool EstAlphaBeta { get; set; }
     }
 }
