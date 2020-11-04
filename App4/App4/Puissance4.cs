@@ -10,16 +10,20 @@ namespace App4
     {
         #region Propriétés 
         public Jeu jeu { get; set; }
-        private int?[,] matrice; // [x,y] : x => ligne et y => colonne
+        public int?[,] matrice; // [x,y] : x => ligne et y => colonne
         public Joueur joueur { get; set; }
+
+        public bool isJoueur1 { get; set; }
+
         #endregion
 
         #region Constructeur
-        public Puissance4(Jeu jeu, int?[,] matrice, Joueur joueur)
+        public Puissance4(Jeu jeu, int?[,] matrice, Joueur joueur, bool isJoueur1)
         {
             this.jeu = jeu;
             this.matrice = matrice;
             this.joueur = joueur;
+            this.isJoueur1 = isJoueur1;
         }
         #endregion
 
@@ -112,11 +116,25 @@ namespace App4
             // Dans le cas ou le joueur1 ou le joueur 2 à 4 pions placés => Fin de la partie
             if (pointJoueur1 == jeu.NbrPointsGagnant)
             {
-                return -jeu.Score;
+                if(isJoueur1)
+                {
+                    return jeu.Score;
+                }
+                else
+                {
+                    return -jeu.Score;
+                }
             }
             else if (pointJoueur2 == jeu.NbrPointsGagnant)
             {
-                return jeu.Score;
+                if (isJoueur1)
+                {
+                    return -jeu.Score;
+                }
+                else
+                {
+                    return jeu.Score;
+                }
             }
 
             return pointJoueur2;
@@ -216,15 +234,19 @@ namespace App4
         /// Méthode qui retourne la colonne choisie par l'IA
         /// </summary>
         /// <returns></returns>
-        public int DecisionIA(Joueur joueurIA)
+        public int DecisionIA(bool isJoueur1)
         {
-            // Changement de joueur
-            joueur = joueurIA;
-
             // Récupération des valeurs en retour de l'IA 
-            var retourIA = Max(this, jeu.Profondeur);
-
-            
+            if (isJoueur1)
+            {
+                this.isJoueur1 = true;
+            }
+            else
+            {
+                this.isJoueur1 = false;
+            }
+            List<int?> retourIA;
+            retourIA = Max(this, 4);
             return (int)retourIA[0].Value;
         }
 
@@ -259,7 +281,7 @@ namespace App4
             for (var colonne = 0; colonne < puissance4.jeu.Colonne; colonne++)
             {
                 // Création d'une copie du jeu (on doit clôner la matrice sinon il y a une référence) 
-                var copiePuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
+                var copiePuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur, puissance4.isJoueur1);
                 // On essaye de positionner le pion dans une colonne de la copie du puissance4
                 if (copiePuissance4.Placer(colonne).Item1)
                 {
@@ -299,7 +321,7 @@ namespace App4
             for (var colonne = 0; colonne < puissance4.jeu.Colonne; colonne++)
             {
                 // Création d'une copie du jeu (on doit clôner la matrice sinon il y a une référence) 
-                var copiePuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur);
+                var copiePuissance4 = new Puissance4(puissance4.jeu, (int?[,])puissance4.matrice.Clone(), puissance4.joueur, puissance4.isJoueur1);
                 // On essaye de positionner le pion dans une colonne de la copie du puissance4
                 if (copiePuissance4.Placer(colonne).Item1)
                 {
