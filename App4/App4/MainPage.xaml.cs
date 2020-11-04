@@ -11,6 +11,7 @@ namespace App4
     public partial class MainPage : ContentPage
     {
         private Puissance4 puissance4;
+        private Parametres parametres;
 
         public MainPage(Parametres parametres)
         {
@@ -20,6 +21,16 @@ namespace App4
 
         protected async override void OnAppearing()
         {
+            IAMatch();
+        }
+
+        private async void IAMatch()
+        {
+            if (!parametres.TypeJoueur1 && !parametres.TypeJoueur2)
+            {
+                return;
+            }
+
             await Task.Delay(1000);
 
             // On a la colonne sélectionné pr l'IA
@@ -57,30 +68,29 @@ namespace App4
 
         public void Demarrage(Parametres parametres)
         {
-            // Récupération des données des combobox
-            //var minMax = (minMaxBox.SelectedItem as ComboBoxItem).Tag.ToString();
-            //var profondeur = (profondeurBox.SelectedItem as ComboBoxItem).Tag.ToString();
-
             // Initialisation des données
             var game = new Jeu();
-            game.Ligne = 6;
-            game.Colonne = 7;
+            game.Ligne = parametres.NbLigne;
+            game.Colonne = parametres.NbColonne;
             game.Statut = Statuts.EnCours;
-            //game.Profondeur = int.Parse(profondeur);
-            game.Profondeur = 4;
-            game.Score = 100000;
-            game.NbrPointsGagnant = 4;
-            //if (minMax != "MinMax")
-            //{
-            //    game.EstAlphaBeta = true;
-            //}
-
+            game.Score = parametres.Score;
+            game.NbrPointsGagnant = parametres.NbPointsGagnants;
+            
+            // On stock en mémoire les paramètres du début
+            this.parametres = parametres;
+            
             // Initialisation du jeu
             puissance4 = new Puissance4(game, new int?[game.Ligne, game.Colonne], 0, true);
         }
 
         private void buttonGrid_Click(object sender, EventArgs evenement)
         {
+            // Si il s'agit de 2 IA 
+            if(parametres.TypeJoueur1 && parametres.TypeJoueur2)
+            {
+                return;
+            }
+
             #region Partie Humain
             if (JoueurHumain(sender))
             {
