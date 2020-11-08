@@ -17,7 +17,7 @@
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Facile</x:String>
                             <x:String>Moyen</x:String>
-                            <x:String>Difficle</x:String>
+                            <x:String>Difficile</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
@@ -33,7 +33,7 @@
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Facile</x:String>
                             <x:String>Moyen</x:String>
-                            <x:String>Difficle</x:String>
+                            <x:String>Difficile</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>

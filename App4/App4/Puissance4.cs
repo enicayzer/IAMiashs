@@ -12,9 +12,7 @@ namespace App4
         public Jeu jeu { get; set; }
         public int?[,] matrice; // [x,y] : x => ligne et y => colonne
         public Joueur joueur { get; set; }
-
         public bool isJoueur1 { get; set; }
-
         #endregion
 
         #region Constructeur
