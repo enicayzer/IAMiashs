@@ -13,7 +13,6 @@ namespace App4
         public int?[,] matrice; // [x,y] : x => ligne et y => colonne
         public Joueur joueur { get; set; }
         public bool isJoueur1 { get; set; }
-        public bool isJoueurAlphaBeta { get; set; }
         #endregion
 
         #region Constructeur
@@ -233,7 +232,7 @@ namespace App4
         /// Méthode qui retourne la colonne choisie par l'IA
         /// </summary>
         /// <returns></returns>
-        public int DecisionIA(bool isJoueur1, int profondeur, bool isJoueurAlphaBeta)
+        public int DecisionIA(bool isJoueur1)
         {
             // Récupération des valeurs en retour de l'IA 
             if (isJoueur1)
@@ -244,9 +243,8 @@ namespace App4
             {
                 this.isJoueur1 = false;
             }
-            this.isJoueurAlphaBeta = isJoueurAlphaBeta;
             List<int?> retourIA;
-            retourIA = Max(this, profondeur);
+            retourIA = Max(this, 4);
             return (int)retourIA[0].Value;
         }
 
@@ -292,7 +290,7 @@ namespace App4
                         maximumPoints[1] = prochainCoup[1];
                         a = prochainCoup[1];
                     }
-                    if(a >= b && isJoueurAlphaBeta)
+                    if(a >= b && jeu.EstAlphaBeta)
                     {
                         return maximumPoints;
                     }
@@ -332,7 +330,7 @@ namespace App4
                         minimumPoints[1] = prochainCoup[1];
                         b = prochainCoup[1];
                     }
-                    if(a >= b && isJoueurAlphaBeta)
+                    if(a >= b && jeu.EstAlphaBeta)
                     {
                         return minimumPoints;
                     }
