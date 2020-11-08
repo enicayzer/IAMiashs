@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace App4
@@ -16,6 +17,8 @@ namespace App4
         public Boolean Joueur2isIA { get; set; }
         public Boolean Joueur1AlphaBeta { get; set; }
         public Boolean Joueur2AlphaBeta { get; set; }
+        public List<long> ListeCoupsJ1 { get; set; }
+        public List<long> ListeCoupsJ2 { get; set; }
         public Statuts Statut { get; set; }
         public int NbColonne { get; set; }
         public int NbLigne { get; set; }
@@ -24,6 +27,18 @@ namespace App4
         
         public Parametres()
         {
+        }
+
+        public void calculDonnees()
+        {
+            if (ListeCoupsJ1.Count != 0)
+            {
+                Console.WriteLine("******* Joueur1 [Niveau: " + NiveauJoueur1 + " - AB: " + Joueur1AlphaBeta + "] __ NbCoups: " + ListeCoupsJ1.Count + " __ Moyenne TR: " + Math.Truncate(100 * ListeCoupsJ1.Average()) / 100);
+            }
+            if (ListeCoupsJ2.Count != 0)
+            {
+                Console.WriteLine("******* Joueur2 [Niveau: " + NiveauJoueur2 + " - AB: " + Joueur2AlphaBeta + "] __ NbCoups: " + ListeCoupsJ2.Count + " __ Moyenne TR: " + Math.Truncate(100 * ListeCoupsJ2.Average()) / 100);
+            }
         }
 
         public int GetIALevelByLabel(String level_label)
@@ -42,6 +57,14 @@ namespace App4
                     break;
             }
             return level_return;
+        }
+
+        public Parametres resetParametresNouvellePartie()
+        {
+            this.ListeCoupsJ1 = new List<long>();
+            this.ListeCoupsJ2 = new List<long>();
+            this.Statut = Statuts.EnCours;
+            return this;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace App4
 {
     public partial class MainPage : ContentPage
     {
+        private int CONST_DELAY = 200;
         private Puissance4 puissance4;
         private Parametres parametres;
 
@@ -53,7 +55,7 @@ namespace App4
                 // Simulation si 2 IA qui s'affronte 
                 while (!AffichageMessageFin(puissance4.VerifierJeu()))
                 {
-                    await Task.Delay(200);
+                    await Task.Delay(CONST_DELAY);
                     if (JoueurIA(isJoueur1, isJoueur1 ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
                     {
                         return;
@@ -124,8 +126,25 @@ namespace App4
 
         private bool JoueurIA(bool isjoueur1, int profondeur)
         {
+            //*** DECLENCHEMENT COMPTEUR TEMPS DE REPONSE ***
+            var watch = Stopwatch.StartNew();
+
             // on appelle l'algorithme minimax 
             var retourIA = puissance4.DecisionIA(isjoueur1, profondeur, parametres.Joueur1isIA ? parametres.Joueur1AlphaBeta : parametres.Joueur2AlphaBeta);
+
+            //*** RECUPERATION TR ET ARRET COMPTEUR ***
+            long temps_reponse = watch.ElapsedMilliseconds;
+            watch.Stop();
+
+            //*** On Ajoute les valeurs dans la listeCoups du joueur correspondant ***
+            if (isjoueur1)
+            {
+                parametres.ListeCoupsJ1.Add(temps_reponse - CONST_DELAY);
+            }
+            else
+            {
+                parametres.ListeCoupsJ2.Add(temps_reponse - CONST_DELAY);
+            }
 
             // On a la colonne sélectionné pr l'IA
             var tupleLigneRetourIA = puissance4.Placer(retourIA);
@@ -184,24 +203,28 @@ namespace App4
             if (statuts == Statuts.Gagne)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "Vous avez gagné", "ok");
+                DisplayAlert("Fin de partie", "Joueur 1 gagne", "ok");
             }
             else if (statuts == Statuts.Perdu)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "Vous avez perdu", "ok");
+                DisplayAlert("Fin de partie", "Joueur 2 gagne", "ok");
             }
             else if (statuts == Statuts.Nul)
             {
                 stopper = true;
                 DisplayAlert("Fin de partie", "Match nul", "ok");
             }
+            if (stopper)
+            {
+                parametres.calculDonnees();
+            }
             return stopper;
         }
 
         private void NouvellePartie_Click(object sender, EventArgs e)
         {
-            Demarrage(parametres);
+            Demarrage(parametres.resetParametresNouvellePartie());
             foreach (var uiElement in gridJeu.Children.Cast<Button>().ToList())
             {
                 uiElement.BackgroundColor = Color.White;

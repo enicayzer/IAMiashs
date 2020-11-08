@@ -34,6 +34,8 @@ namespace App4
                 parametres.NomJoueur1 = j1_Name.Text;
                 parametres.TypeJoueur2 = Joueur.Joueur2;
                 parametres.NomJoueur2 = j2_Name.Text;
+                parametres.ListeCoupsJ1 = new List<long>();
+                parametres.ListeCoupsJ2 = new List<long>();
 
                 //*** On regarde s'il faut des IA ***
                 bool is_j1_IA = j1_IA.IsToggled;
