@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.Page1">
 
-    <StackLayout Padding="5">
+    <StackLayout Padding="5"  BackgroundColor="#25E1FF">
 
         <StackLayout x:Name="accueil_Layout">
             

@@ -9,11 +9,8 @@ namespace App4
         public int Ligne { get; set; }
         public int Colonne { get; set; }
         public Statuts Statut { get; set; }
-        public int Profondeur { get; set; }
         public int Score { get; set; }
         // Nombre de points gagnant par défaut 4
         public int NbrPointsGagnant { get; set; }
-
-        public bool EstAlphaBeta { get; set; }
     }
 }
