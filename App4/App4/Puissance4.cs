@@ -136,7 +136,7 @@ namespace App4
                 }
             }
 
-            return pointJoueur2;
+            return isJoueur1 ? pointJoueur1 :  pointJoueur2;
         }
 
         private Tuple<bool, int> VerifierScore(int score)
