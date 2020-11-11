@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -89,6 +90,33 @@ namespace App4
         async void CallPopupIALevel()
         {
             await DisplayAlert("Attention", "Renseigner le niveau IA", "OK");
+        }
+
+        private void j1_AlphaBeta_Toggled(object sender, ToggledEventArgs e)
+        {
+            var isAfficher = false;
+            // On affiche les éléments si switch à true
+            if (((Switch)sender).IsToggled)
+            {
+                isAfficher = true;
+            }
+            j1_IA_Level.IsVisible = isAfficher;
+            j1_AlphaBeta.IsVisible = isAfficher;
+            j1_AlphaBeta_Text.IsVisible = isAfficher;
+
+        }
+
+        private void j2_IA_Toggled(object sender, ToggledEventArgs e)
+        {
+            var isAfficher = false;
+            // On affiche les éléments si switch à true
+            if (((Switch)sender).IsToggled)
+            {
+                isAfficher = true;
+            }
+            j2_IA_Level.IsVisible = isAfficher;
+            j2_AlphaBeta.IsVisible = isAfficher;
+            j2_AlphaBeta_Text.IsVisible = isAfficher;
         }
     }
 }
