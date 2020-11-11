@@ -186,10 +186,17 @@ namespace App4
         private bool AffichageMessageFin(Statuts statuts)
         {
             var stopper = false;
-            if (statuts == Statuts.Gagne || statuts == Statuts.Perdu)
+            if (statuts == Statuts.Gagne )
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", puissance4.isJoueur1 ? parametres.NomJoueur1 : parametres.NomJoueur2 + " gagne", "ok");
+                var libelle = (puissance4.isJoueur1 ? parametres.NomJoueur1 : parametres.NomJoueur2) + " gagne";
+                DisplayAlert("Fin de partie", libelle, "ok");
+            }
+            else if(statuts == Statuts.Perdu)
+            {
+                stopper = true;
+                var libelle = (puissance4.isJoueur1 ? parametres.NomJoueur1 : parametres.NomJoueur2).ToString() + " gagne";
+                DisplayAlert("Fin de partie", libelle, "ok");
             }
             else if (statuts == Statuts.Nul)
             {
