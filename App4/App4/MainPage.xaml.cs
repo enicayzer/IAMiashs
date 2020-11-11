@@ -28,29 +28,15 @@ namespace App4
 
         private async void IAMatch()
         {
+            // On return si il y a pas d'IA ou si une IA est en 2ème joueur
             if ((!parametres.Joueur1isIA && !parametres.Joueur2isIA) || (parametres.Joueur2isIA && !parametres.Joueur1isIA))
             {
                 return;
             }
-
-            //await Task.Delay(1000);
-            // On a la colonne sélectionné pr l'IA
-            var tupleLigneRetourIA = puissance4.Placer(3);
-            var boutonCliquerIA = gridJeu.Children.Cast<Button>()
-              .FirstOrDefault(e => Grid.GetRow(e) == tupleLigneRetourIA.Item2 && Grid.GetColumn(e) == 3) as Button;
-            // On change le fond en rouge du bouton sélectionné par l'IA 
-            if (puissance4.joueur == Joueur.Joueur1)
-            {
-                boutonCliquerIA.BackgroundColor = Color.Red;
-            }
-            else
-            {
-                boutonCliquerIA.BackgroundColor = Color.Yellow;
-            }
-
+            
             if (parametres.Joueur1isIA && parametres.Joueur2isIA)
             {
-                var isJoueur1 = false;
+                var isJoueur1 = true;
                 var loop = 0;
                 // Simulation si 2 IA qui s'affronte 
                 while (!AffichageMessageFin(puissance4.VerifierJeu()))
@@ -130,7 +116,7 @@ namespace App4
             var watch = Stopwatch.StartNew();
 
             // on appelle l'algorithme minimax 
-            var retourIA = puissance4.DecisionIA(isjoueur1, profondeur, parametres.Joueur1isIA ? parametres.Joueur1AlphaBeta : parametres.Joueur2AlphaBeta);
+            var retourIA = puissance4.DecisionIA(isjoueur1, profondeur, isjoueur1 ? parametres.Joueur1AlphaBeta : parametres.Joueur2AlphaBeta);
 
             //*** RECUPERATION TR ET ARRET COMPTEUR ***
             long temps_reponse = watch.ElapsedMilliseconds;
@@ -203,12 +189,13 @@ namespace App4
             if (statuts == Statuts.Gagne)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "Joueur 1 gagne", "ok");
+                
+                DisplayAlert("Fin de partie", parametres.NomJoueur1 + " gagne", "ok");
             }
             else if (statuts == Statuts.Perdu)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", "Joueur 2 gagne", "ok");
+                DisplayAlert("Fin de partie", parametres.NomJoueur2 + "gagne", "ok");
             }
             else if (statuts == Statuts.Nul)
             {
@@ -229,6 +216,7 @@ namespace App4
             {
                 uiElement.BackgroundColor = Color.White;
             }
+            IAMatch();
         }
 
         private void RetourMenu_Click(object sender, EventArgs e)
