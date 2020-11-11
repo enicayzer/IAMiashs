@@ -195,7 +195,7 @@ namespace App4
             else if (statuts == Statuts.Perdu)
             {
                 stopper = true;
-                DisplayAlert("Fin de partie", parametres.NomJoueur2 + "gagne", "ok");
+                DisplayAlert("Fin de partie", parametres.NomJoueur2 + " gagne", "ok");
             }
             else if (statuts == Statuts.Nul)
             {

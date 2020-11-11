@@ -9,7 +9,7 @@
             
             <Image Source="_assets/images/img_accueil.jpg" Margin="0,40,0,0" />
 
-            <Entry Placeholder="Joueur 1"  WidthRequest="200" x:Name="j1_Name" />
+            <Entry Placeholder="Joueur 1" Text="joueur1"  WidthRequest="200" x:Name="j1_Name" />
             <FlexLayout Direction="Row">
                 <Label Text="Est IA" Margin="30,15,0,0"/>
                 <Switch IsToggled="false" Toggled="j1_AlphaBeta_Toggled" WidthRequest="50" x:Name="j1_IA" />
@@ -26,7 +26,7 @@
                 <Switch IsToggled="false" IsVisible="false" WidthRequest="70" x:Name="j1_AlphaBeta" Margin="-25,0,0,0" />
             </FlexLayout>
 
-            <Entry Placeholder="Joueur 2" WidthRequest="200" x:Name="j2_Name" Margin="0,20,0,0"/>
+            <Entry Placeholder="Joueur 2"  Text="joueur2" WidthRequest="200" x:Name="j2_Name" Margin="0,20,0,0"/>
             <FlexLayout>
                 <Label Text="Est IA" Margin="30,15,0,0"/>
                 <Switch IsToggled="false" Toggled="j2_IA_Toggled" WidthRequest="50" x:Name="j2_IA" />
