@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace App4
 {
@@ -135,8 +136,13 @@ namespace App4
                     return jeu.Score;
                 }
             }
+            else
+            {
+                return isJoueur1 ? pointJoueur1 : pointJoueur2;
+            }
+            //return joueur == Joueur.Joueur1 ? pointJoueur1 : pointJoueur2;
 
-            return joueur == Joueur.Joueur1 ? pointJoueur1 :  pointJoueur2;
+
         }
 
         private Tuple<bool, int> VerifierScore(int score)
@@ -234,7 +240,7 @@ namespace App4
         /// </summary>
         /// <returns></returns>
         /// <returns></returns>
-        public int DecisionIA(bool isJoueur1, int profondeur, bool isJoueurAlphaBeta)
+        public async Task<int> DecisionIA(bool isJoueur1, int profondeur, bool isJoueurAlphaBeta)
         {
             // Récupération des valeurs en retour de l'IA 
             if (isJoueur1)
@@ -247,7 +253,7 @@ namespace App4
             }
             this.isJoueurAlphaBeta = isJoueurAlphaBeta;
             List<int?> retourIA;
-            retourIA = Max(this, profondeur);
+            retourIA = await Max(this, profondeur);
             return (int)retourIA[0].Value;
         }
 
@@ -270,7 +276,7 @@ namespace App4
         /// <param name="a">Alpha</param>
         /// <param name="b">Beta</param>
         /// <returns></returns>
-        private List<int?> Max(Puissance4 puissance4, int profondeur, int? a = null, int? b = null)
+        private async Task<List<int?>> Max(Puissance4 puissance4, int profondeur, int? a = null, int? b = null)
         {
             var points = puissance4.CompteurPoints();
             // Si le jeu est terminée on retour une liste null
@@ -286,7 +292,7 @@ namespace App4
                 // On essaye de positionner le pion dans une colonne de la copie du puissance4
                 if (copiePuissance4.Placer(colonne).Item1)
                 {
-                    var prochainCoup = Min(copiePuissance4, profondeur - 1, a, b);
+                    var prochainCoup = await Min(copiePuissance4, profondeur - 1, a, b);
                     if (maximumPoints[0] == null || prochainCoup[1] > maximumPoints[1])
                     {
                         maximumPoints[0] = colonne;
@@ -310,7 +316,7 @@ namespace App4
         /// <param name="a">Alpha</param>
         /// <param name="b">Beta</param>
         /// <returns></returns>
-        private List<int?> Min(Puissance4 puissance4, int profondeur, int? a = null, int? b = null)
+        private async Task<List<int?>> Min(Puissance4 puissance4, int profondeur, int? a = null, int? b = null)
         {
             var points = puissance4.CompteurPoints();
             // Si le jeu est terminée on retour une liste null
@@ -326,7 +332,7 @@ namespace App4
                 // On essaye de positionner le pion dans une colonne de la copie du puissance4
                 if (copiePuissance4.Placer(colonne).Item1)
                 {
-                    var prochainCoup = Max(copiePuissance4, profondeur - 1, a, b);
+                    var prochainCoup = await Max(copiePuissance4, profondeur - 1, a, b);
                     if (minimumPoints[0] == null || prochainCoup[1] < minimumPoints[1])
                     {
                         minimumPoints[0] = colonne;

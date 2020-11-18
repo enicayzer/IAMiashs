@@ -116,7 +116,7 @@ namespace App4
             var watch = Stopwatch.StartNew();
 
             // on appelle l'algorithme minimax 
-            var retourIA = puissance4.DecisionIA(isjoueur1, profondeur, isjoueur1 ? parametres.Joueur1AlphaBeta : parametres.Joueur2AlphaBeta);
+            var retourIA = puissance4.DecisionIA(isjoueur1, profondeur, isjoueur1 ? parametres.Joueur1AlphaBeta : parametres.Joueur2AlphaBeta).Result;
 
             //*** RECUPERATION TR ET ARRET COMPTEUR ***
             long temps_reponse = watch.ElapsedMilliseconds;
