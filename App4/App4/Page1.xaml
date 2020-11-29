@@ -11,9 +11,9 @@
 
             <Entry Placeholder="Joueur 1" Text="joueurx"  WidthRequest="200" x:Name="j1_Name" />
             <FlexLayout Direction="Row">
-                <Label Text="Est IA" Margin="30,15,15,0"/>
-                <Switch IsToggled="false" Margin="0,10,0,0" HorizontalOptions="Center" VerticalOptions="Center" Toggled="j1_AlphaBeta_Toggled" WidthRequest="50" x:Name="j1_IA" />
-                <Picker Title="Niveau" IsVisible="false" VerticalOptions="Center" x:Name="j1_IA_Level">
+                <Label WidthRequest="50" Text="Est IA" />
+                <Switch IsToggled="false"  HorizontalOptions="Center" VerticalOptions="Center" Toggled="j1_AlphaBeta_Toggled" WidthRequest="50" x:Name="j1_IA" />
+                <Picker Title="Niveau"  IsVisible="false" VerticalOptions="Center" x:Name="j1_IA_Level">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Facile</x:String>
@@ -22,14 +22,14 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Label Text="AlphaBeta" x:Name="j1_AlphaBeta_Text" IsVisible="false" Margin="20,15,25,25"/>
-                <Switch IsToggled="false"  Margin="0,10,0,0" IsVisible="false" WidthRequest="70" x:Name="j1_AlphaBeta" />
+                <Label Text="AlphaBeta" WidthRequest="70" x:Name="j1_AlphaBeta_Text" IsVisible="false" />
+                <Switch IsToggled="false" IsVisible="false" WidthRequest="70" x:Name="j1_AlphaBeta" />
             </FlexLayout>
 
             <Entry Placeholder="Joueur 2"  Text="joueur2" WidthRequest="200" x:Name="j2_Name" Margin="0,20,0,0"/>
             <FlexLayout>
-                <Label Text="Est IA" Margin="30,15,15,0"/>
-                <Switch IsToggled="false" Margin="0,10,0,0" Toggled="j2_IA_Toggled" WidthRequest="50" x:Name="j2_IA" />
+                <Label Text="Est IA" />
+                <Switch IsToggled="false" Toggled="j2_IA_Toggled" WidthRequest="50" x:Name="j2_IA" />
                 <Picker Title="Niveau" IsVisible="false" VerticalOptions="Center" x:Name="j2_IA_Level">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -39,8 +39,8 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <Label Text="AlphaBeta" IsVisible="false" x:Name="j2_AlphaBeta_Text"  Margin="20,15,25,25"/>
-                <Switch IsToggled="false"  Margin="0,10,0,0" IsVisible="false" WidthRequest="70" x:Name="j2_AlphaBeta"  />
+                <Label Text="AlphaBeta" IsVisible="false" x:Name="j2_AlphaBeta_Text"/>
+                <Switch IsToggled="false" IsVisible="false" WidthRequest="70" x:Name="j2_AlphaBeta"  />
             </FlexLayout>
 
             <Button Text="Commencer" Clicked="StartGame" Margin="0,20,0,0"/>
