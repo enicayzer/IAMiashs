@@ -33,11 +33,11 @@ namespace App4
             {
                 return;
             }
-            
+
+            var isJoueur1 = true;
+            var loop = 0;
             if (parametres.Joueur1isIA && parametres.Joueur2isIA)
             {
-                var isJoueur1 = true;
-                var loop = 0;
                 // Simulation si 2 IA qui s'affronte 
                 while (!AffichageMessageFin(puissance4.VerifierJeu()))
                 {
@@ -48,6 +48,14 @@ namespace App4
                     }
                     isJoueur1 = ChangeBool(isJoueur1);
                     loop += 1;
+                }
+            }
+            else
+            {
+                await Task.Delay(CONST_DELAY);
+                if (JoueurIA(isJoueur1, isJoueur1 ? parametres.NiveauJoueur1 : parametres.NiveauJoueur2))
+                {
+                    return;
                 }
             }
         }
